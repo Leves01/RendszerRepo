@@ -22,12 +22,12 @@ namespace RendszerRepo.Controllers
             return Ok(await _partService.GetAllParts());
         }
 
-        [HttpPost]
+        [HttpPost("AddPart")]
         public async Task<ActionResult<ServiceResponse<List<Part>>>> AddPart(Part newPart) {
             return Ok(await _partService.AddPart(newPart));
         }
 
-        [HttpPut]
+        [HttpPut("UpdatePart")]
         public async Task<ActionResult<ServiceResponse<List<Part>>>> UpdatePart(Part updatedPart) {
             var response = await _partService.UpdatePart(updatedPart);
             if(response.Data is null) {
@@ -36,7 +36,7 @@ namespace RendszerRepo.Controllers
             return Ok(response);
         }
 
-        [HttpDelete]
+        [HttpDelete("DeletePart")]
         public async Task<ActionResult<ServiceResponse<List<Part>>>> DeletePart(int id) 
         {
             var response = await _partService.DeletePart(id);
