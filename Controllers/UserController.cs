@@ -30,7 +30,7 @@ namespace RendszerRepo.Controllers
             return Ok(await _userService.GetUsersByRole(role));
         }
 
-        [HttpPost]
+        [HttpPost("AddUser")]
         public async Task<ActionResult<ServiceResponse<List<User>>>> AddUser(User newUser) {
             return Ok(await _userService.AddUser(newUser));
         }
