@@ -9,6 +9,7 @@ namespace RendszerRepo.Services.UserService
     {
         private static List<User> users = new List<User> {
             new User(),
+            new User {username = "admin", password = "admin", userRole = Roles.admin},
             new User {username = "teszt", password = "teszt123", userRole = Roles.warehouseManager},
             new User {username = "ferencmeni", userRole = Roles.warehouseManager},
             new User {username = "balintmend", password = "wehehe", userRole = Roles.warehouseManager},
@@ -16,20 +17,27 @@ namespace RendszerRepo.Services.UserService
             new User {username = "2emp", userRole = Roles.warehouseEmployee},
             new User {username = "tech1"}
         };
-        public List<User> AddUser(User newUser)
+        public async Task<ServiceResponse<List<User>>> AddUser(User newUser)
         {
+            var serviceResponse = new ServiceResponse<List<User>>();
             users.Add(newUser);
-            return users;
+            serviceResponse.Data = users;
+            return serviceResponse;
         }
 
-        public List<User> GetAllUsers()
+        public async Task<ServiceResponse<List<User>>> GetAllUsers()
         {
-            return users;
+            var serviceResponse = new ServiceResponse<List<User>>();
+            serviceResponse.Data = users;
+            return serviceResponse;
         }
 
-        public List<User> GetUsersByRole(Roles role)
+        public async Task<ServiceResponse<List<User>>> GetUsersByRole(Roles role)
         {
-            return users.FindAll(u => u.userRole == role);
+            var serviceResponse = new ServiceResponse<List<User>>();
+            var user = users.FindAll(u => u.userRole == role);
+            serviceResponse.Data = user;
+            return serviceResponse;
         }
     }
 }
