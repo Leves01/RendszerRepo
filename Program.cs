@@ -15,6 +15,7 @@ builder.Services.AddSwaggerGen();
 //IService - Service
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPartService, PartService>();
+builder.Services.AddScoped<IStorageService, StorageService>();
 
 var app = builder.Build();
 

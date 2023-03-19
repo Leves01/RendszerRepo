@@ -13,11 +13,7 @@ namespace RendszerRepo.Services.PartService
             _context = context;
         }
         //partId, partName, price, maxCount
-        private static List<Part> parts = new List<Part> {
-            // new Part(),
-            // new Part{partName = "panel", price = 5000, maxCount = 3},
-            // new Part{partName = "inverter", price = 100, maxCount = 100}
-        };
+        private static List<Part> parts = new List<Part> {};
 
         public async Task<ServiceResponse<List<Part>>> GetAllParts()
         {
@@ -71,7 +67,7 @@ namespace RendszerRepo.Services.PartService
                     throw new Exception($"Part with Id '{id}' not found.");
                 }
 
-                parts.Remove(part);
+                _context.Parts.Remove(part);
             
                 serviceResponse.Data = parts;
                 

@@ -15,5 +15,7 @@ namespace RendszerRepo.Data
         public DbSet<User> Users => Set<User>();
 
         public DbSet<Part> Parts => Set<Part>();
+
+        public DbSet<Storage> Storages => Set<Storage>();
     }
 }
