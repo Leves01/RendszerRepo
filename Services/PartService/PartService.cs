@@ -26,7 +26,17 @@ namespace RendszerRepo.Services.PartService
         public async Task<ServiceResponse<List<Part>>> AddPart(Part newPart)
         {
             var serviceResponse = new ServiceResponse<List<Part>>();
-            _context.Parts.Add(newPart);
+            var dbParts = await _context.Parts.ToListAsync();
+
+            var addedPart = dbParts.FirstOrDefault(u => u.partName == newPart.partName);
+
+            if(addedPart is not null) {
+                throw new Exception($"'{newPart.partName}' part already exists.");
+            }
+            else {
+                _context.Parts.Add(newPart);
+            }
+            
             await _context.SaveChangesAsync();
             return serviceResponse;
         }

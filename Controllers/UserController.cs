@@ -11,6 +11,7 @@ namespace RendszerRepo.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
+        
         private readonly IUserService _userService;
 
         public UserController(IUserService userService)
@@ -34,5 +35,11 @@ namespace RendszerRepo.Controllers
         public async Task<ActionResult<ServiceResponse<List<User>>>> AddUser(User newUser) {
             return Ok(await _userService.AddUser(newUser));
         }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<string>> Login(string username, string password) {
+            return Ok(await _userService.Login(username, password));
+        }
+
     }
 }

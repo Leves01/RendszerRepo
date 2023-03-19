@@ -1,6 +1,10 @@
+global using System.Text;
 global using RendszerRepo.Models;
 global using RendszerRepo.Services.UserService;
 global using RendszerRepo.Services.PartService;
 global using Microsoft.EntityFrameworkCore;
 global using RendszerRepo.Data;
 global using RendszerRepo.Services.StorageService;
+global using System.Security.Claims;
+global using Microsoft.IdentityModel.Tokens;
+global using System.IdentityModel.Tokens.Jwt;

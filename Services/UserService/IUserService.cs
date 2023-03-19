@@ -10,7 +10,7 @@ namespace RendszerRepo.Services.UserService
         Task<ServiceResponse<List<User>>> GetAllUsers();
         Task<ServiceResponse<List<User>>> GetUsersByRole(Roles role);
         Task<ServiceResponse<List<User>>> AddUser(User newUser);
-        
-        // Task<ServiceResponse<List<User>>> loginUser(User user);
+        Task<ServiceResponse<string>> Login(string username, string password);
+        public string CreateToken(User user);
     }
 }
