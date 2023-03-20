@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -31,12 +32,12 @@ namespace RendszerRepo.Controllers
             return Ok(await _userService.GetUsersByRole(role));
         }
 
-        [HttpPost("AddUser")]
+        [HttpPost("AddUser"), Authorize(Roles = "admin")]
         public async Task<ActionResult<ServiceResponse<List<User>>>> AddUser(User newUser) {
             return Ok(await _userService.AddUser(newUser));
         }
 
-        [HttpPost("login")]
+        [HttpPost("login"), Authorize(AllowAnonymous)]
         public async Task<ActionResult<string>> Login(string username, string password) {
             return Ok(await _userService.Login(username, password));
         }
