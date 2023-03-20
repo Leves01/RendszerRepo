@@ -26,12 +26,17 @@ namespace RendszerRepo.Services.UserService
             var dbUsers = await _context.Users.ToListAsync();
 
             var addedUser = dbUsers.FirstOrDefault(u => u.username == newUser.username);
-            if(addedUser is not null) {
-                throw new Exception($"User with '{newUser.username}' username already exists.");
-            }
-            else {
-                _context.Users.Add(newUser);
-            }
+            // if(currentUser.userRole != Roles.admin) {
+            //     throw new Exception($"You do not have permission to use this function");
+            // } else {
+                if(addedUser is not null) {
+                    throw new Exception($"User with '{newUser.username}' username already exists.");
+                }
+                else {
+                    _context.Users.Add(newUser);
+                }   
+            // }
+            
             
             await _context.SaveChangesAsync();
             return serviceResponse;
@@ -67,6 +72,7 @@ namespace RendszerRepo.Services.UserService
         public string CreateToken(User user) {
             List<Claim> claims = new List<Claim> {
                 new Claim(ClaimTypes.Name, user.username)
+                // ,new Claim(ClaimTypes.Role, user.userRole)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(

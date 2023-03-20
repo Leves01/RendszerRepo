@@ -37,7 +37,7 @@ namespace RendszerRepo.Controllers
             return Ok(await _userService.AddUser(newUser));
         }
 
-        [HttpPost("login"), Authorize(AllowAnonymous)]
+        [HttpPost("login")]
         public async Task<ActionResult<string>> Login(string username, string password) {
             return Ok(await _userService.Login(username, password));
         }
