@@ -18,6 +18,7 @@ namespace RendszerRepo
             CreateMap<AddPartDto, Part>();
             CreateMap<UpdatePartDto, Part>();
             CreateMap<DeletePartDto, Part>();
+            CreateMap<UpdatePartPriceDto, Part>();
 
         }
     }

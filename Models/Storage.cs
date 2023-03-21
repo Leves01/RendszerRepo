@@ -13,5 +13,6 @@ namespace RendszerRepo.Models
         public int column { get; set; }
         public int drawer { get; set; }
         public int countOfParts { get; set; }
+        public int max {get; set;}
     }
 }

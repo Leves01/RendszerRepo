@@ -9,6 +9,6 @@ namespace RendszerRepo.Dtos.User
     {
         public string username { get; set; } = "default";
         public string password { get; set; } = "default123";
-        public Roles userRole { get; set; } = Roles.techincian;
+        public string userRole { get; set; } = "Technician";
     }
 }

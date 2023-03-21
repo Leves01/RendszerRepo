@@ -84,8 +84,9 @@ namespace RendszerRepo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("userRole")
-                        .HasColumnType("int");
+                    b.Property<string>("userRole")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("username")
                         .IsRequired()

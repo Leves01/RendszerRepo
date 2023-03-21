@@ -11,8 +11,8 @@ using RendszerRepo.Data;
 namespace RendszerRepo.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230319015356_StorageMigration")]
-    partial class StorageMigration
+    [Migration("20230321180100_initialCommit")]
+    partial class initialCommit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -87,8 +87,9 @@ namespace RendszerRepo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("userRole")
-                        .HasColumnType("int");
+                    b.Property<string>("userRole")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("username")
                         .IsRequired()

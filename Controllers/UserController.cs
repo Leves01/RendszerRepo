@@ -20,19 +20,19 @@ namespace RendszerRepo.Controllers
             _userService = userService;
         }
 
-        [HttpGet("GetAllUsers")]
+        [HttpGet("GetAllUsers"), Authorize("Admin")]
         public async Task<ActionResult<ServiceResponse<List<GetUserDto>>>> GetAllUsers() 
         {
             return Ok(await _userService.GetAllUsers());
         }
 
-        [HttpGet("GetById")]
+        [HttpGet("GetById"), Authorize("Admin")]
         public async Task<ActionResult<ServiceResponse<GetUserDto>>> GetByRole(int id) 
         {
             return Ok(await _userService.GetUsersById(id));
         }
 
-        [HttpPost("AddUser")]
+        [HttpPost("AddUser"), Authorize("Admin")]
         public async Task<ActionResult<ServiceResponse<List<GetUserDto>>>> AddUser(AddUserDto newUser) {
             return Ok(await _userService.AddUser(newUser));
         }

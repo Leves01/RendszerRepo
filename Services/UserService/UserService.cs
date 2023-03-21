@@ -62,7 +62,7 @@ namespace RendszerRepo.Services.UserService
 
         public async Task<ServiceResponse<string>> Login(string username, string password) {
             var serviceResponse = new ServiceResponse<string>();
-            var dbUsers = await _context.Users.FirstOrDefaultAsync(u => ((u.username == username) && (u.password == password)));
+            var currentUser = await _context.Users.FirstAsync(u => (u.username == username) && (u.password == password));
 
             string token = CreateToken(currentUser);
 
@@ -71,9 +71,10 @@ namespace RendszerRepo.Services.UserService
         }
 
         public string CreateToken(User user) {
+
             List<Claim> claims = new List<Claim> {
                 new Claim(ClaimTypes.Name, user.username)
-                //,new Claim(ClaimTypes.Role, user.userRole)
+                ,new Claim(ClaimTypes.Role, user.userRole)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
