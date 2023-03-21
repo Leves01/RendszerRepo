@@ -8,42 +8,44 @@ namespace RendszerRepo.Services.PartService
     public class PartService : IPartService
     {
         private readonly DataContext _context;
-        public PartService(DataContext context)
+        private readonly IMapper _mapper;
+        public PartService(IMapper mapper, DataContext context)
         {
+            _mapper = mapper;
             _context = context;
         }
         //partId, partName, price, maxCount
         private static List<Part> parts = new List<Part> {};
 
-        public async Task<ServiceResponse<List<Part>>> GetAllParts()
+        public async Task<ServiceResponse<List<GetPartDto>>> GetAllParts()
         {
-            var serviceResponse = new ServiceResponse<List<Part>>();
+            var serviceResponse = new ServiceResponse<List<GetPartDto>>();
             var dbParts = await _context.Parts.ToListAsync();
-            serviceResponse.Data = dbParts;
+            serviceResponse.Data = dbParts.Select(p => _mapper.Map<GetPartDto>(p)).ToList();
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<Part>>> AddPart(Part newPart)
+        public async Task<ServiceResponse<List<GetPartDto>>> AddPart(AddPartDto newPart)
         {
-            var serviceResponse = new ServiceResponse<List<Part>>();
+            var serviceResponse = new ServiceResponse<List<GetPartDto>>();
             var dbParts = await _context.Parts.ToListAsync();
 
-            var addedPart = dbParts.FirstOrDefault(u => u.partName == newPart.partName);
+            var addedPart = dbParts.FirstOrDefault(u => (u.partName == newPart.partName));
 
             if(addedPart is not null) {
                 throw new Exception($"'{newPart.partName}' part already exists.");
             }
             else {
-                _context.Parts.Add(newPart);
+                _context.Parts.Add(_mapper.Map<Part>(newPart));
             }
             
             await _context.SaveChangesAsync();
             return serviceResponse;
         }
         
-        public async Task<ServiceResponse<Part>> UpdatePart(Part updatedPart)
+        public async Task<ServiceResponse<GetPartDto>> UpdatePart(UpdatePartDto updatedPart)
         {
-            var serviceResponse = new ServiceResponse<Part>();
+            var serviceResponse = new ServiceResponse<GetPartDto>();
             var dbParts = await _context.Parts.ToListAsync();
 
             try {
@@ -56,38 +58,38 @@ namespace RendszerRepo.Services.PartService
                 part.price = updatedPart.price;
                 part.maxCount = updatedPart.maxCount;
             
-                serviceResponse.Data = part;
+                serviceResponse.Data = _mapper.Map<GetPartDto>(part);
             } catch(Exception ex) {
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.Message;
             }
+
             await _context.SaveChangesAsync();
-            
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<Part>>> DeletePart(int id)
+        public async Task<ServiceResponse<List<GetPartDto>>> DeletePart(int id)
         {
-            var serviceResponse = new ServiceResponse<List<Part>>();
+            var serviceResponse = new ServiceResponse<List<GetPartDto>>();
             var dbParts = await _context.Parts.ToListAsync();
 
             try {
-                var part = dbParts.FirstOrDefault(p => p.partId == id);
+                var part = dbParts.First(p => p.partId == id);
                 if(part is null) {
                     throw new Exception($"Part with Id '{id}' not found.");
                 }
 
-                _context.Parts.Remove(part);
+                dbParts.Remove(part);
             
-                serviceResponse.Data = parts;
+                serviceResponse.Data = dbParts.Select(p => _mapper.Map<GetPartDto>(p)).ToList();
                 
             } catch(Exception ex) {
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.Message;
             }
+
             await _context.SaveChangesAsync();
-            
             return serviceResponse;
         }
-    }
+     }
 }

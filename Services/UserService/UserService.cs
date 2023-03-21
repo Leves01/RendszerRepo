@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace RendszerRepo.Services.UserService
 {
     public class UserService : IUserService
     { 
         private readonly DataContext _context;
         private readonly IConfiguration _configuration;
+        private readonly IMapper _mapper;
 
-        public UserService(DataContext context, IConfiguration configuration)
+        public UserService(IMapper mapper, DataContext context, IConfiguration configuration)
         {
+            _mapper = mapper;
             _context = context;
             _configuration = configuration; 
         }
@@ -20,42 +23,40 @@ namespace RendszerRepo.Services.UserService
         private static List<User> users = new List<User> {};
         public static User currentUser = new User();
 
-        public async Task<ServiceResponse<List<User>>> AddUser(User newUser)
+        public async Task<ServiceResponse<List<GetUserDto>>> AddUser(AddUserDto newUser)
         {
-            var serviceResponse = new ServiceResponse<List<User>>();
+            var serviceResponse = new ServiceResponse<List<GetUserDto>>();
             var dbUsers = await _context.Users.ToListAsync();
 
-            var addedUser = dbUsers.FirstOrDefault(u => u.username == newUser.username);
+            var alreadyUser = dbUsers.FirstOrDefault(u => (u.username == newUser.username));
             // if(currentUser.userRole != Roles.admin) {
             //     throw new Exception($"You do not have permission to use this function");
             // } else {
-                if(addedUser is not null) {
+                if(alreadyUser is not null) {
                     throw new Exception($"User with '{newUser.username}' username already exists.");
                 }
                 else {
-                    _context.Users.Add(newUser);
+                    //.Add(_mapper.Map<AddUserDto>(newUser));
+                    _context.Add(_mapper.Map<User>(newUser));
                 }   
             // }
-            
-            
             await _context.SaveChangesAsync();
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<User>>> GetAllUsers()
+        public async Task<ServiceResponse<List<GetUserDto>>> GetAllUsers()
         {
-            var serviceResponse = new ServiceResponse<List<User>>();
+            var serviceResponse = new ServiceResponse<List<GetUserDto>>();
             var dbUsers = await _context.Users.ToListAsync();
-            serviceResponse.Data = dbUsers;
+            serviceResponse.Data = dbUsers.Select(u => _mapper.Map<GetUserDto>(u)).ToList();
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<User>>> GetUsersByRole(Roles role)
+        public async Task<ServiceResponse<GetUserDto>> GetUsersById(int id)
         {
-            var serviceResponse = new ServiceResponse<List<User>>();
-            var dbUsers = await _context.Users.ToListAsync();
-            var user = dbUsers.FindAll(u => u.userRole == role);
-            serviceResponse.Data = user;
+            var serviceResponse = new ServiceResponse<GetUserDto>();
+            var dbUsers = await _context.Users.FirstOrDefaultAsync(u => u.userId == id);
+            serviceResponse.Data = _mapper.Map<GetUserDto>(dbUsers);
             return serviceResponse;
         }
 
@@ -72,7 +73,7 @@ namespace RendszerRepo.Services.UserService
         public string CreateToken(User user) {
             List<Claim> claims = new List<Claim> {
                 new Claim(ClaimTypes.Name, user.username)
-                // ,new Claim(ClaimTypes.Role, user.userRole)
+                //,new Claim(ClaimTypes.Role, user.userRole)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
@@ -83,7 +84,7 @@ namespace RendszerRepo.Services.UserService
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddDays(1),
+                expires: DateTime.UtcNow.AddHours(1),
                 signingCredentials: creds
             );
 

@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RendszerRepo.Models
+namespace RendszerRepo.Dtos.User
 {
-    public class User
+    public class AddUserDto
     {
-        public int userId { get; set; }
         public string username { get; set; } = "default";
         public string password { get; set; } = "default123";
-        public Roles userRole { get; set; }
+        public Roles userRole { get; set; } = Roles.techincian;
     }
 }

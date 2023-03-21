@@ -3,6 +3,13 @@ global using System.Text;
 //Models
 global using RendszerRepo.Models;
 
+//Dtos
+global using RendszerRepo.Dtos.User;
+global using RendszerRepo.Dtos.Part;
+
+//Mapper
+global using AutoMapper;
+
 //Services
 global using RendszerRepo.Services.UserService;
 global using RendszerRepo.Services.PartService;

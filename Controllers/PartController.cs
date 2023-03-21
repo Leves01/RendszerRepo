@@ -17,18 +17,18 @@ namespace RendszerRepo.Controllers
         }
 
         [HttpGet("GetAllParts")]
-        public async Task<ActionResult<ServiceResponse<List<Part>>>> GetAllParts() 
+        public async Task<ActionResult<ServiceResponse<List<GetPartDto>>>> GetAllParts() 
         {
             return Ok(await _partService.GetAllParts());
         }
 
         [HttpPost("AddPart")]
-        public async Task<ActionResult<ServiceResponse<List<Part>>>> AddPart(Part newPart) {
+        public async Task<ActionResult<ServiceResponse<List<AddPartDto>>>> AddPart(AddPartDto newPart) {
             return Ok(await _partService.AddPart(newPart));
         }
 
         [HttpPut("UpdatePart")]
-        public async Task<ActionResult<ServiceResponse<List<Part>>>> UpdatePart(Part updatedPart) {
+        public async Task<ActionResult<ServiceResponse<List<UpdatePartDto>>>> UpdatePart(UpdatePartDto updatedPart) {
             var response = await _partService.UpdatePart(updatedPart);
             if(response.Data is null) {
                 return NotFound(response);
@@ -37,7 +37,7 @@ namespace RendszerRepo.Controllers
         }
 
         [HttpDelete("DeletePart")]
-        public async Task<ActionResult<ServiceResponse<List<Part>>>> DeletePart(int id) 
+        public async Task<ActionResult<ServiceResponse<List<DeletePartDto>>>> DeletePart(int id) 
         {
             var response = await _partService.DeletePart(id);
             if(response.Data is null) {

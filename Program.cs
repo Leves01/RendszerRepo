@@ -24,6 +24,9 @@ builder.Services.AddSwaggerGen(options =>
 //Authentication
 builder.Services.AddAuthentication().AddJwtBearer();
 
+//Automapper
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
 //IService - Service
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPartService, PartService>();
