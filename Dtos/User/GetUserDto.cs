@@ -10,6 +10,6 @@ namespace RendszerRepo.Dtos.User
         public int userId { get; set; }
         public string username { get; set; } = "default";
         public string password { get; set; } = "default123";
-        public Roles userRole { get; set; }
+        public string userRole { get; set; } = "Technician";
     }
 }

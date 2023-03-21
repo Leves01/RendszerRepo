@@ -10,6 +10,8 @@ namespace RendszerRepo.Models
         public int userId { get; set; }
         public string username { get; set; } = "default";
         public string password { get; set; } = "default123";
-        public Roles userRole { get; set; }
+
+        //Admin, Technician, WarehouseManager, WarehouseEmployee
+        public string userRole { get; set;} = "Technician";
     }
 }
