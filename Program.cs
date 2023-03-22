@@ -22,7 +22,21 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 //Authentication
-builder.Services.AddAuthentication().AddJwtBearer();
+builder.Services.AddAuthentication().AddJwtBearer(options => {
+    options.TokenValidationParameters = new TokenValidationParameters {
+        ValidateIssuerSigningKey = true,
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                builder.Configuration.GetSection("Authentication:Schemes:Bearer:SigningKeys:0:Value").Value!))
+    };
+});
+
+//Authorization
+// services.Add(auth =>
+//     {
+        
+//     })
 
 //Automapper
 builder.Services.AddAutoMapper(typeof(Program).Assembly);

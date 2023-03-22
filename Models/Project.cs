@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace RendszerRepo.Models
 {
-    public class Projects
+    public class Project
     {
         public int ProjectId { get; set; }
         [Display(Name = "Part")] 

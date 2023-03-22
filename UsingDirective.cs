@@ -25,3 +25,7 @@ global using System.IdentityModel.Tokens.Jwt;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.OpenApi.Models;
 global using Swashbuckle.AspNetCore.Filters;
+
+//Database
+global using System.ComponentModel.DataAnnotations.Schema;
+global using System.ComponentModel.DataAnnotations;

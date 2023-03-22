@@ -22,12 +22,12 @@ namespace RendszerRepo.Controllers
             return Ok(await _partService.GetAllParts());
         }
 
-        [HttpPost("AddPart"), Authorize("WarehouseManager")]
+        [HttpPost("AddPart"), Authorize(Roles = "WarehouseManager")]
         public async Task<ActionResult<ServiceResponse<List<GetPartDto>>>> AddPart(AddPartDto newPart) {
             return Ok(await _partService.AddPart(newPart));
         }
 
-        [HttpPut("UpdatePartPrice"), Authorize("WarehouseManager")]
+        [HttpPut("UpdatePartPrice"), Authorize(Roles = "WarehouseManager")]
         public async Task<ActionResult<ServiceResponse<List<GetPartDto>>>> UpdatePartPrice(UpdatePartPriceDto updatedPart) {
             var response = await _partService.UpdatePartPrice(updatedPart);
             if(response.Data is null) {
@@ -36,7 +36,7 @@ namespace RendszerRepo.Controllers
             return Ok(response);
         }
 
-        [HttpPut("UpdatePart"), Authorize("WarehouseManager")]
+        [HttpPut("UpdatePart"), Authorize(Roles = "WarehouseManager")]
         public async Task<ActionResult<ServiceResponse<List<GetPartDto>>>> UpdatePart(UpdatePartDto updatedPart) {
             var response = await _partService.UpdatePart(updatedPart);
             if(response.Data is null) {
@@ -45,7 +45,7 @@ namespace RendszerRepo.Controllers
             return Ok(response);
         }
 
-        [HttpDelete("DeletePart"), Authorize("WarehouseManager")]
+        [HttpDelete("DeletePart"), Authorize(Roles = "WarehouseManager")]
         public async Task<ActionResult<ServiceResponse<List<GetPartDto>>>> DeletePart(int id) 
         {
             var response = await _partService.DeletePart(id);
