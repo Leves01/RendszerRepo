@@ -6,6 +6,7 @@ global using RendszerRepo.Models;
 //Dtos
 global using RendszerRepo.Dtos.User;
 global using RendszerRepo.Dtos.Part;
+global using RendszerRepo.Dtos.Storage;
 
 //Mapper
 global using AutoMapper;

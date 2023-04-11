@@ -8,28 +8,31 @@ namespace RendszerRepo.Services.StorageService
     public class StorageService : IStorageService
     {
         private readonly DataContext _context;
-        public StorageService(DataContext context)
-        {
+        private readonly IMapper _mapper;
+        public StorageService(DataContext context, IMapper mapper)
+        {        
             _context = context;
+            _mapper = mapper;
         }
 
         //storageId, partId, row, column, drawer, countOfParts
         private static List<Storage> storageList = new List<Storage> {};
 
-        public async Task<ServiceResponse<List<Storage>>> GetStorages()
+        public async Task<ServiceResponse<List<GetStoragesDto>>> GetStorages()
         {
-            var serviceResponse = new ServiceResponse<List<Storage>>();
+            var serviceResponse = new ServiceResponse<List<GetStoragesDto>>();
             var dbStorage = await _context.Storages.ToListAsync();
-            serviceResponse.Data = dbStorage;
+            serviceResponse.Data = dbStorage.Select(s => _mapper.Map<GetStoragesDto>(s)).ToList();
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<Storage>>> GetStorageByPartId(int id)
+        public async Task<ServiceResponse<List<GetStoragesDto>>> GetStorageByPartId(int id)
         {
-            var serviceResponse = new ServiceResponse<List<Storage>>();
+            var serviceResponse = new ServiceResponse<List<GetStoragesDto>>();
             var dbStorage = await _context.Storages.ToListAsync();
             var stored = dbStorage.FindAll(s => s.partId == id);
-            serviceResponse.Data = stored;
+            //ez fogalmam sincs hogy müködik-e mert nem tudok rendesen tesztelni laptopon
+            serviceResponse.Data = dbStorage.Select(s => _mapper.Map<GetStoragesDto>(stored)).ToList();
             return serviceResponse;
         }
 
@@ -60,17 +63,27 @@ namespace RendszerRepo.Services.StorageService
         //     return serviceResponse;
         // }
 
-        public async Task<ServiceResponse<List<Storage>>> AddStorage(Storage newStorage)
+        public async Task<ServiceResponse<List<GetStoragesDto>>> AddStorage(AddStorageDto newStorage)
         {
-            var serviceResponse = new ServiceResponse<List<Storage>>();
-            _context.Storages.Add(newStorage);
+            var serviceResponse = new ServiceResponse<List<GetStoragesDto>>();
+            var dbStorage = await _context.Storages.ToListAsync();
+
+            var storageNotAvailable = dbStorage.FirstOrDefault(s => (s.column == newStorage.column && s.drawer == newStorage.drawer && s.row == newStorage.row));
+
+            if(storageNotAvailable is not null) {
+                // ez nem tudom hogy jelenik meg, szintén le kell tesztelni
+                throw new Exception($"An item in '{newStorage.column}, {newStorage.drawer}, {newStorage.row}' already exists.");
+            } else {
+                _context.Storages.Add(_mapper.Map<Storage>(newStorage));
+            }
+
             await _context.SaveChangesAsync();
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<Storage>> UpdateStorage(Storage updatedStorage)
+        public async Task<ServiceResponse<GetStoragesDto>> UpdateStorage(UpdateStoragesDto updatedStorage)
         {
-            var serviceResponse = new ServiceResponse<Storage>();
+            var serviceResponse = new ServiceResponse<GetStoragesDto>();
             var dbStorage = await _context.Storages.ToListAsync();
 
             try {
@@ -86,19 +99,19 @@ namespace RendszerRepo.Services.StorageService
                 stored.drawer = updatedStorage.drawer;
                 stored.countOfParts = updatedStorage.countOfParts;
             
-                serviceResponse.Data = stored;
+                serviceResponse.Data = _mapper.Map<GetStoragesDto>(stored);
             } catch(Exception ex) {
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.Message;
             }
+
             await _context.SaveChangesAsync();
-            
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<Storage>>> DeleteStorage(int id)
+        public async Task<ServiceResponse<List<GetStoragesDto>>> DeleteStorage(int id)
         {
-            var serviceResponse = new ServiceResponse<List<Storage>>();
+            var serviceResponse = new ServiceResponse<List<GetStoragesDto>>();
             var dbStorage = await _context.Storages.ToListAsync();
 
             try {
@@ -107,9 +120,11 @@ namespace RendszerRepo.Services.StorageService
                     throw new Exception($"Storage with Id '{id}' not found.");
                 }
 
-                _context.Storages.Remove(stored);
+                dbStorage.Remove(stored);
+
+                
             
-                serviceResponse.Data = storageList;
+                serviceResponse.Data = dbStorage.Select(s => _mapper.Map<GetStoragesDto>(s)).ToList();
                 
             } catch(Exception ex) {
                 serviceResponse.Success = false;
