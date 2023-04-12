@@ -17,13 +17,13 @@ namespace RendszerRepo.Controllers
         }
 
         [HttpGet("GetStorages")]
-        public async Task<ActionResult<ServiceResponse<List<Storage>>>> GetStorages() 
+        public async Task<ActionResult<ServiceResponse<List<GetStoragesDto>>>> GetStorages() 
         {
             return Ok(await _storageService.GetStorages());
         }
 
         [HttpGet("GetStorageByPartId")]
-        public async Task<ActionResult<ServiceResponse<List<Storage>>>> GetStorageByPartId(int id) 
+        public async Task<ActionResult<ServiceResponse<List<GetStoragesDto>>>> GetStorageByPartId(int id) 
         {
             return Ok(await _storageService.GetStorageByPartId(id));
         }
@@ -47,12 +47,12 @@ namespace RendszerRepo.Controllers
         // }
 
         [HttpPost("AddStorage")]
-        public async Task<ActionResult<ServiceResponse<List<Storage>>>> AddStorage(Storage newStorage) {
+        public async Task<ActionResult<ServiceResponse<List<GetStoragesDto>>>> AddStorage(AddStorageDto newStorage) {
             return Ok(await _storageService.AddStorage(newStorage));
         }
 
         [HttpPut("UpdateStorage")]
-        public async Task<ActionResult<ServiceResponse<List<Storage>>>> UpdatePart(Storage updatedStorage) {
+        public async Task<ActionResult<ServiceResponse<List<GetStoragesDto>>>> UpdatePart(UpdateStoragesDto updatedStorage) {
             var response = await _storageService.UpdateStorage(updatedStorage);
             if(response.Data is null) {
                 return NotFound(response);
@@ -61,7 +61,7 @@ namespace RendszerRepo.Controllers
         }
 
         [HttpDelete("DeleteStorage")]
-        public async Task<ActionResult<ServiceResponse<List<Storage>>>> DeletePart(int id) 
+        public async Task<ActionResult<ServiceResponse<List<GetStoragesDto>>>> DeletePart(int id) 
         {
             var response = await _storageService.DeleteStorage(id);
             if(response.Data is null) {

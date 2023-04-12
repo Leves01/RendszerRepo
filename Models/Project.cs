@@ -11,7 +11,7 @@ namespace RendszerRepo.Models
         [Display(Name = "Part")] 
         public int partId { get; set; }
         [ForeignKey("partId")] 
-        public virtual Part Parts { get; set; }
+        public virtual Part? Parts { get; set; }
         public int quantity {get; set;}
         public int combinedPrice {get; set;}
     }

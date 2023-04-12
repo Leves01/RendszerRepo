@@ -13,7 +13,7 @@ namespace RendszerRepo.Dtos.Storage
         public int partId { get; set; }
 
         [ForeignKey("partId")] 
-        public virtual GetPartDto Parts { get; set; }
+        public virtual GetPartDto? Parts { get; set; }
         
         public int row { get; set; }
         public int column { get; set; }

@@ -63,6 +63,7 @@ namespace RendszerRepo.Services.StorageService
         //     return serviceResponse;
         // }
 
+        //B5 - Beérkező anyagok felvétele a rendszerben, a tárolás, a rekesz meghatározása
         public async Task<ServiceResponse<List<GetStoragesDto>>> AddStorage(AddStorageDto newStorage)
         {
             var serviceResponse = new ServiceResponse<List<GetStoragesDto>>();
@@ -135,6 +136,30 @@ namespace RendszerRepo.Services.StorageService
             return serviceResponse;
         }
 
-        
+        //B6 - Rekeszeknél a maximálisan elhelyezhető darabszám kezelése
+        public async Task<ServiceResponse<GetStoragesDto>> UpdateMax(UpdateMaxDto updateMax)
+        {
+            var serviceResponse = new ServiceResponse<GetStoragesDto>();
+            var dbStorage = await _context.Storages.ToListAsync();
+
+            try {
+                var stored = dbStorage.FirstOrDefault(s => s.storageId == updateMax.storageId);
+                if(stored is null) {
+                    throw new Exception($"Storage with Id '{updateMax.storageId}' not found.");
+                } else {
+                    //storageId, partId, row, column, drawer, countOfParts
+                    stored.max = updateMax.max;
+                }
+  
+                serviceResponse.Data = _mapper.Map<GetStoragesDto>(stored);
+
+            } catch(Exception ex) {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+
+            await _context.SaveChangesAsync();
+            return serviceResponse;
+        }
     }
 }

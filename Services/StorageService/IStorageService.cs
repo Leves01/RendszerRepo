@@ -18,5 +18,8 @@ namespace RendszerRepo.Services.StorageService
         Task<ServiceResponse<List<GetStoragesDto>>> AddStorage(AddStorageDto newStorage);
         Task<ServiceResponse<GetStoragesDto>> UpdateStorage(UpdateStoragesDto updatedStorage);
         Task<ServiceResponse<List<GetStoragesDto>>> DeleteStorage(int id);
+
+        //B - 6
+        Task<ServiceResponse<GetStoragesDto>> UpdateMax(UpdateMaxDto updateMax);
     }
 }
