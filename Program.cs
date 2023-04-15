@@ -32,6 +32,7 @@ builder.Services.AddAuthentication().AddJwtBearer(options => {
     };
 });
 
+
 //Authorization
 // services.Add(auth =>
 //     {

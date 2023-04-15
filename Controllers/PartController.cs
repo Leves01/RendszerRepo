@@ -54,5 +54,15 @@ namespace RendszerRepo.Controllers
             }
             return Ok(response);
         }
+
+         [HttpPut("PartToProject"), Authorize(Roles = "Technician")]
+        public async Task<ActionResult<ServiceResponse<List<GetPartDto>>>> PartToProject(int selectedPartId, int selectedProjectId, int selectedQuantity) 
+        {
+            var response = await _partService.PartToProject(selectedPartId, selectedProjectId, selectedQuantity);
+            if(response.Data is null) {
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
     }
 }
