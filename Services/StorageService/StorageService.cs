@@ -26,12 +26,12 @@ namespace RendszerRepo.Services.StorageService
             return serviceResponse;
         }
 
+        //mapping probléma, majd megnézem
         public async Task<ServiceResponse<List<GetStoragesDto>>> GetStorageByPartId(int id)
         {
             var serviceResponse = new ServiceResponse<List<GetStoragesDto>>();
             var dbStorage = await _context.Storages.ToListAsync();
             var stored = dbStorage.FindAll(s => s.partId == id);
-            //ez fogalmam sincs hogy müködik-e mert nem tudok rendesen tesztelni laptopon
             serviceResponse.Data = dbStorage.Select(s => _mapper.Map<GetStoragesDto>(stored)).ToList();
             return serviceResponse;
         }
@@ -72,8 +72,9 @@ namespace RendszerRepo.Services.StorageService
             var storageNotAvailable = dbStorage.FirstOrDefault(s => (s.column == newStorage.column && s.drawer == newStorage.drawer && s.row == newStorage.row));
 
             if(storageNotAvailable is not null) {
-                // ez nem tudom hogy jelenik meg, szintén le kell tesztelni
-                throw new Exception($"An item in '{newStorage.column}, {newStorage.drawer}, {newStorage.row}' already exists.");
+                throw new Exception($"An item in column: '{newStorage.column}', drawer: '{newStorage.drawer}', row: '{newStorage.row}' already exists.");
+            } else if (newStorage.max < newStorage.countOfParts){
+                throw new Exception($"The maximum is lower than the count of parts you are adding");
             } else {
                 _context.Storages.Add(_mapper.Map<Storage>(newStorage));
             }
@@ -91,6 +92,8 @@ namespace RendszerRepo.Services.StorageService
                 var stored = dbStorage.FirstOrDefault(s => s.storageId == updatedStorage.storageId);
                 if(stored is null) {
                     throw new Exception($"Part with Id '{updatedStorage.storageId}' not found.");
+                } else if (updatedStorage.max < updatedStorage.countOfParts) {
+                    throw new Exception($"The maximum is lower than the count of parts you are updating");
                 }
 
                 //storageId, partId, row, column, drawer, countOfParts
@@ -146,6 +149,8 @@ namespace RendszerRepo.Services.StorageService
                 var stored = dbStorage.FirstOrDefault(s => s.storageId == updateMax.storageId);
                 if(stored is null) {
                     throw new Exception($"Storage with Id '{updateMax.storageId}' not found.");
+                } else if (updateMax.max < stored.countOfParts) {
+                    throw new Exception($"The maximum can't be lower than the number of currently stored parts");
                 } else {
                     //storageId, partId, row, column, drawer, countOfParts
                     stored.max = updateMax.max;
