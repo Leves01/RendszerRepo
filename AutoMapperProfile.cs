@@ -28,7 +28,10 @@ namespace RendszerRepo
             CreateMap<DeleteStorageDto, Storage>();
             
             //Dependecies
-            
+            CreateMap<Project, GetPartDto>();
+            CreateMap<GetPartDto, Project>();
+            CreateMap<Storage, GetPartDto>();
+            CreateMap<GetPartDto, Storage>();
 
         }
     }

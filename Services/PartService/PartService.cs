@@ -120,12 +120,12 @@ namespace RendszerRepo.Services.PartService
         {
             var serviceResponse = new ServiceResponse<GetPartDto>();
             var dbParts = await _context.Parts.ToListAsync();
-            var dbProjects = await _context.Projects.ToListAsync();
+            var dbProject = await _context.Project.ToListAsync();
             var dbStorage = await _context.Storages.ToListAsync();
 
             try {
                 var part = dbParts.First(p => p.partId == selectedPartId);
-                var project = dbProjects.First(u => (u.ProjectId == selectedProjectId));
+                var project = dbProject.First(u => (u.ProjectId == selectedProjectId));
                 var storage = dbStorage.First(p => p.partId == selectedPartId);
 
                 if(part is null) {
