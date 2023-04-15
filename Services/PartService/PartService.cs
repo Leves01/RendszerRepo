@@ -137,7 +137,11 @@ namespace RendszerRepo.Services.PartService
                 
                 project.partId = part.partId;
                 project.quantity = selectedQuantity;
-                storage.countOfParts-=selectedQuantity;
+                if((storage.countOfParts-selectedQuantity)<0)
+                    throw new Exception($"Not enough parts.");
+                else
+                    storage.countOfParts-=selectedQuantity;
+
                 
                 serviceResponse.Data = _mapper.Map<GetPartDto>(project);
                 serviceResponse.Data = _mapper.Map<GetPartDto>(storage);
