@@ -17,5 +17,9 @@ namespace RendszerRepo.Data
         public DbSet<Part> Parts => Set<Part>();
 
         public DbSet<Storage> Storages => Set<Storage>();
+
+        public DbSet<Project> Project => Set<Project>();
+
+        public DbSet<Project_properties> ProjectProperties => Set<Project_properties>();
     }
 }

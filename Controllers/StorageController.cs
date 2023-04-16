@@ -69,5 +69,14 @@ namespace RendszerRepo.Controllers
             }
             return Ok(response);
         }
+
+        [HttpPut("UpdateMax")]
+        public async Task<ActionResult<ServiceResponse<GetStoragesDto>>> UpdateMax(UpdateMaxDto updateMax) {
+            var response = await _storageService.UpdateMax(updateMax);
+            if(response.Data is null) {
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
     }
 }
