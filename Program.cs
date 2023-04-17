@@ -46,6 +46,7 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPartService, PartService>();
 builder.Services.AddScoped<IStorageService, StorageService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
 
 
 

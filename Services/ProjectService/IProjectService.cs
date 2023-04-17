@@ -8,7 +8,7 @@ namespace RendszerRepo.Services.ProjectService
 {
     public interface IProjectService
     {
-       // Task<ServiceResponse<List<GetStoragesDto>>> GetStorages();
-       
+        Task<ServiceResponse<List<GetProject_propertiesDto>>> AddProject(AddProjectDto newProject);
+        Task<ServiceResponse<List<GetProject_propertiesDto>>> GetProjects();
     }
 }
