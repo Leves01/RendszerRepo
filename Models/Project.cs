@@ -12,7 +12,9 @@ namespace RendszerRepo.Models
         public int partId { get; set; }
         [ForeignKey("partId")] 
         public virtual Part Parts { get; set; }
-        public int quantity {get; set;}
-        public int combinedPrice {get; set;}
+        public int quantity { get; set; }
+        public int combinedPrice { get; set; }
+        public int workTime { get; set;}
+        public int workPrice{ get; set; }
     }
 }
