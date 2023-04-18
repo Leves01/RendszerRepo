@@ -28,7 +28,7 @@ builder.Services.AddAuthentication().AddJwtBearer(options => {
         ValidateIssuer = false,
         ValidateAudience = false,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                builder.Configuration.GetSection("Authentication:Schemes:Bearer:SigningKeys:0:Value").Value!))
+                builder.Configuration.GetSection("AppSettings:Token").Value!))
     };
 });
 
@@ -46,6 +46,7 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPartService, PartService>();
 builder.Services.AddScoped<IStorageService, StorageService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
 
 
 
