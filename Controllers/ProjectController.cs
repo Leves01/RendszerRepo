@@ -16,7 +16,7 @@ namespace RendszerRepo.Controllers
             _projectService=ProjectService;
         }
 
-        [HttpGet("AddProject")]
+        [HttpPost("AddProject")]
         public async Task<ActionResult<ServiceResponse<List<GetProject_propertiesDto>>>> AddProject(AddProjectDto newProject) 
         {
             return Ok(await _projectService.AddProject(newProject));
