@@ -7,10 +7,7 @@ namespace RendszerRepo.Dtos.Project_properties
 {
     public class GetProject_propertiesDto
     {
-         [Display(Name = "Project")]
-        public int ProjectId { get; set; }
-        [ForeignKey("ProjectId")] 
-        public virtual Project Project { get; set; }
+        public int projectId {get; set;}
         public string ProjectName { get; set; }
         public string Status { get; set; }
         [Display(Name = "AssignedWorker")]
