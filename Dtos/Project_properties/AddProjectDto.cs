@@ -7,7 +7,6 @@ namespace RendszerRepo.Dtos.Project_properties
 {
     public class AddProjectDto
     {
-        public int ProjectId { get; set; }
         public string ProjectName { get; set; }
         public string Status { get; set; }
         public string Location{get; set;}
