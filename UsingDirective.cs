@@ -7,6 +7,7 @@ global using RendszerRepo.Models;
 global using RendszerRepo.Dtos.User;
 global using RendszerRepo.Dtos.Part;
 global using RendszerRepo.Dtos.Storage;
+global using RendszerRepo.Dtos.Project;
 
 //Mapper
 global using AutoMapper;
@@ -14,6 +15,7 @@ global using AutoMapper;
 //Services
 global using RendszerRepo.Services.UserService;
 global using RendszerRepo.Services.PartService;
+global using RendszerRepo.Services.ProjectService;
 
 global using Microsoft.EntityFrameworkCore;
 global using RendszerRepo.Data;

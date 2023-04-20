@@ -9,6 +9,6 @@ namespace RendszerRepo.Services.ProjectService
     public interface IProjectService
     {
        // Task<ServiceResponse<List<GetStoragesDto>>> GetStorages();
-       
+       Task<ServiceResponse<GetProjectDto>> AddWorkTimeAndPrice(int projektid, int time, int price);
     }
 }
