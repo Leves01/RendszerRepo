@@ -26,6 +26,10 @@ namespace RendszerRepo
             CreateMap<UpdateMaxDto, Storage>();
             CreateMap<UpdateStoragesDto, Storage>();
             CreateMap<DeleteStorageDto, Storage>();
+
+            //Project
+            CreateMap<Project_properties, GetProject_propertiesDto>();
+            CreateMap<AddProjectDto, Project_properties>();
             
             //Dependecies
             CreateMap<Project, GetPartDto>();
