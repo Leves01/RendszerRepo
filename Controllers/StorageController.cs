@@ -16,7 +16,7 @@ namespace RendszerRepo.Controllers
             _storageService = storageService;
         }
 
-        [HttpGet("GetStorages")]
+        [HttpGet("GetStorages"), Authorize(Roles = "WarehouseManager")]
         public async Task<ActionResult<ServiceResponse<List<GetStoragesDto>>>> GetStorages() 
         {
             return Ok(await _storageService.GetStorages());
@@ -46,12 +46,12 @@ namespace RendszerRepo.Controllers
         //     return Ok(await _storageService.GetStorageByDrawer(drawer));
         // }
 
-        [HttpPost("AddStorage")]
+        [HttpPost("AddStorage"), Authorize(Roles = "WarehouseManager")]
         public async Task<ActionResult<ServiceResponse<List<GetStoragesDto>>>> AddStorage(AddStorageDto newStorage) {
             return Ok(await _storageService.AddStorage(newStorage));
         }
 
-        [HttpPut("UpdateStorage")]
+        [HttpPut("UpdateStorage"), Authorize(Roles = "WarehouseManager")]
         public async Task<ActionResult<ServiceResponse<List<GetStoragesDto>>>> UpdatePart(UpdateStoragesDto updatedStorage) {
             var response = await _storageService.UpdateStorage(updatedStorage);
             if(response.Data is null) {
@@ -60,7 +60,7 @@ namespace RendszerRepo.Controllers
             return Ok(response);
         }
 
-        [HttpDelete("DeleteStorage")]
+        [HttpDelete("DeleteStorage"), Authorize(Roles = "WarehouseManager")]
         public async Task<ActionResult<ServiceResponse<List<GetStoragesDto>>>> DeletePart(int id) 
         {
             var response = await _storageService.DeleteStorage(id);
@@ -70,7 +70,7 @@ namespace RendszerRepo.Controllers
             return Ok(response);
         }
 
-        [HttpPut("UpdateMax")]
+        [HttpPut("UpdateMax"), Authorize(Roles = "WarehouseManager")]
         public async Task<ActionResult<ServiceResponse<GetStoragesDto>>> UpdateMax(UpdateMaxDto updateMax) {
             var response = await _storageService.UpdateMax(updateMax);
             if(response.Data is null) {

@@ -40,12 +40,13 @@ namespace RendszerRepo.Services.ProjectService
             serviceResponse.Data = dbProject_properties.Select(s => _mapper.Map<GetProject_propertiesDto>(s)).ToList();
             return serviceResponse;
         }
+
         //projectid, partid, quantity, combinedPrice
         private static List<Part> projects = new List<Part> {};
+     
+        public async Task<ServiceResponse<GetProjectDto>> AddWorkTimeAndPrice(int projektid, int time, int price) {
 
-        public async Task<ServiceResponse<GetProjectDto>> AddWorkTimeAndPrice(int projektid, int time, int price)
             var serviceResponse = new ServiceResponse<GetProjectDto>();
-        {
             var dbProjects = await _context.Project.ToListAsync();
 
             try{
@@ -63,7 +64,7 @@ namespace RendszerRepo.Services.ProjectService
             }
                 
             await _context.SaveChangesAsync();
-            return serviceResponse;
+            return serviceResponse;   
         }
     }
 }
