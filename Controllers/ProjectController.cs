@@ -24,6 +24,17 @@ namespace RendszerRepo.Controllers
             }
             return Ok(response);
         }
-    }
 
+        [HttpPost("AddProject")]
+        public async Task<ActionResult<ServiceResponse<List<GetProject_propertiesDto>>>> AddProject(AddProjectDto newProject) 
+        {
+            return Ok(await _projectService.AddProject(newProject));
+        }
+
+        [HttpGet("GetProject")]
+        public async Task<ActionResult<ServiceResponse<List<GetProject_propertiesDto>>>> GetProject() 
+        {
+            return Ok(await _projectService.GetProjects());
+        }
+    }
 }
