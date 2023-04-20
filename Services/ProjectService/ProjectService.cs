@@ -14,6 +14,7 @@ namespace RendszerRepo.Services.ProjectService
             _context = context;
             _mapper = mapper;
         }
+         
      public async Task<ServiceResponse<List<GetProject_propertiesDto>>> AddProject(AddProjectDto newProject)
         {
             var serviceResponse = new ServiceResponse<List<GetProject_propertiesDto>>();
@@ -27,9 +28,27 @@ namespace RendszerRepo.Services.ProjectService
             else {
                 _context.ProjectProperties.Add(_mapper.Map<Project_properties>(newProject));
             }
+             async Task<ServiceResponse<List<GetPrDto>>> AddPr(AddPrDto newprj)
+        {
+            var serviceResponse = new ServiceResponse<List<GetPrDto>>();
+            var dbProject = await _context.Project.ToListAsync();
+
+            var addedProject = dbProject.FirstOrDefault(u => (u.ProjectName == newprj.ProjectName));
+
+            if(addedProject is not null) {
+                throw new Exception($"'{newprj.ProjectName}' project already exists.");
+            }
+            else {
+                _context.Project.Add(_mapper.Map<Project>(newprj));
+            }
             
             await _context.SaveChangesAsync();
             return serviceResponse;
+        }
+            
+            await _context.SaveChangesAsync();
+            return serviceResponse;
+            
         }
 
         private static List<Project_properties> ProjectdetailList = new List<Project_properties> {};
