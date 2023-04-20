@@ -121,12 +121,10 @@ namespace RendszerRepo.Services.PartService
             var serviceResponse = new ServiceResponse<GetPartDto>();
             var dbParts = await _context.Parts.ToListAsync();
             var dbProject = await _context.Project.ToListAsync();
-            var dbStorage = await _context.Storages.ToListAsync();
 
             try {
                 var part = dbParts.First(p => p.partId == selectedPartId);
                 var project = dbProject.First(u => (u.ProjectId == selectedProjectId));
-                var storage = dbStorage.First(p => p.partId == selectedPartId);
 
                 if(part is null) {
                     throw new Exception($"Part with Id '{selectedPartId}' not found.");
@@ -134,18 +132,33 @@ namespace RendszerRepo.Services.PartService
                 if(project is null) {
                     throw new Exception($"Project with Id '{selectedProjectId}' not found.");
                 }
-                
                 project.partId = part.partId;
                 project.quantity = selectedQuantity;
+                
+                serviceResponse.Data = _mapper.Map<GetPartDto>(project);
+                await PartOutOfStorage(selectedPartId, selectedQuantity);
+            } 
+            catch(Exception ex) {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+
+            await _context.SaveChangesAsync();
+            return serviceResponse;
+        }
+        public async Task<ServiceResponse<GetStoragesDto>> PartOutOfStorage(int selectedPartId, int selectedQuantity)
+        {
+            var serviceResponse = new ServiceResponse<GetStoragesDto>();
+            var dbStorage = await _context.Storages.ToListAsync();
+
+            try{
+                var storage = dbStorage.First(p => p.partId == selectedPartId);
                 if((storage.countOfParts-selectedQuantity)<0)
                     throw new Exception($"Not enough parts.");
                 else
                     storage.countOfParts-=selectedQuantity;
-
-                
-                serviceResponse.Data = _mapper.Map<GetPartDto>(project);
-                serviceResponse.Data = _mapper.Map<GetPartDto>(storage);
-            } 
+                serviceResponse.Data = _mapper.Map<GetStoragesDto>(storage);
+            }
             catch(Exception ex) {
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.Message;

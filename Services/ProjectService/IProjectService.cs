@@ -10,5 +10,6 @@ namespace RendszerRepo.Services.ProjectService
     {
         Task<ServiceResponse<List<GetProject_propertiesDto>>> AddProject(AddProjectDto newProject);
         Task<ServiceResponse<List<GetProject_propertiesDto>>> GetProjects();
+       Task<ServiceResponse<GetProjectDto>> AddWorkTimeAndPrice(int projektid, int time, int price);
     }
 }
