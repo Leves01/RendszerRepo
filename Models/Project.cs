@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace RendszerRepo.Models
 {
-    [Keyless]
     public class Project
     {
+        [Key]
+        public int OwnId { get; set; }
          [Display(Name = "Project")]
         public int ProjectId { get; set; }
         [ForeignKey("ProjectId")] 

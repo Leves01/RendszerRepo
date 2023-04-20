@@ -8,6 +8,7 @@ namespace RendszerRepo.Models
 {
     public class Project_properties
     {
+        [Key]
         public int ProjectId { get; set; }
        
         public string ProjectName { get; set; }
