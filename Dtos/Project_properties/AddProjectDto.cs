@@ -7,9 +7,12 @@ namespace RendszerRepo.Dtos.Project_properties
 {
     public class AddProjectDto
     {
-        public string ProjectName { get; set; }
-        public string Status { get; set; }
-        public string Location{get; set;}
-        public string CustomerName{get; set;}
+        [Display(Name = "AssignedWorker")]
+        public int assignedId {get; set;}
+        [Display(Name = "Part")] 
+        public int partId { get; set; }
+        public int quantity {get; set;}
+        public int combinedPrice {get; set;}
+
     }
 }

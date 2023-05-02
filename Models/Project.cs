@@ -8,17 +8,10 @@ namespace RendszerRepo.Models
     public class Project
     {
         [Key]
-        public int OwnId { get; set; }
-         [Display(Name = "Project")]
         public int ProjectId { get; set; }
-        [ForeignKey("ProjectId")] 
-        public virtual Project_properties Project_p { get; set; }
-        [Display(Name = "Part")] 
-        public int partId { get; set; }
-        [ForeignKey("partId")] 
-        public virtual Part Parts { get; set; }
-        public string ProjectName {get; set;}
-        public int quantity {get; set;}
-        public int combinedPrice {get; set;}
+        public string ProjectName { get; set; }
+        public string Status { get; set; }
+        public string Location {get; set;}
+        public string CustomerName{get; set;}
     }
 }
