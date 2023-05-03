@@ -8,8 +8,8 @@ namespace RendszerRepo.Services.ProjectService
 {
     public interface IProjectService
     {
-        Task<ServiceResponse<List<GetProject_propertiesDto>>> AddProject(AddProjectDto newProject);
-        Task<ServiceResponse<List<GetProject_propertiesDto>>> GetProjects();
+        Task<ServiceResponse<List<GetPrDto>>> AddProject(AddPrDto newProject);
+        Task<ServiceResponse<List<GetPrDto>>> GetProjects();
        Task<ServiceResponse<GetProjectDto>> AddWorkTimeAndPrice(int projektid, int time, int price);
     }
 }

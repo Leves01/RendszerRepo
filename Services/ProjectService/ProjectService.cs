@@ -14,30 +14,32 @@ namespace RendszerRepo.Services.ProjectService
             _context = context;
             _mapper = mapper;
         }
-     public async Task<ServiceResponse<List<GetProject_propertiesDto>>> AddProject(AddProjectDto newProject)
+         
+     public async Task<ServiceResponse<List<GetPrDto>>> AddProject(AddPrDto newProject)
         {
-            var serviceResponse = new ServiceResponse<List<GetProject_propertiesDto>>();
-            var dbProject = await _context.ProjectProperties.ToListAsync();
+            var serviceResponse = new ServiceResponse<List<GetPrDto>>();
+            var dbProject = await _context.Project.ToListAsync();
 
             var addedProject = dbProject.FirstOrDefault(u => (u.ProjectName == newProject.ProjectName));
 
             if(addedProject is not null) {
-                throw new Exception($"'{newProject.ProjectName}' part already exists.");
+                throw new Exception($"'{newProject.ProjectName}' project already exists.");
             }
             else {
-                _context.ProjectProperties.Add(_mapper.Map<Project_properties>(newProject));
+                _context.Project.Add(_mapper.Map<Project>(newProject));
             }
             
             await _context.SaveChangesAsync();
             return serviceResponse;
+            
         }
 
-        private static List<Project_properties> ProjectdetailList = new List<Project_properties> {};
-        public async Task<ServiceResponse<List<GetProject_propertiesDto>>> GetProjects()
+        private static List<Project> ProjectdetailList = new List<Project> {};
+        public async Task<ServiceResponse<List<GetPrDto>>> GetProjects()
         {
-            var serviceResponse = new ServiceResponse<List<GetProject_propertiesDto>>();
-            var dbProject_properties = await _context.ProjectProperties.ToListAsync();
-            serviceResponse.Data = dbProject_properties.Select(s => _mapper.Map<GetProject_propertiesDto>(s)).ToList();
+            var serviceResponse = new ServiceResponse<List<GetPrDto>>();
+            var dbProject = await _context.Project.ToListAsync();
+            serviceResponse.Data = dbProject.Select(s => _mapper.Map<GetPrDto>(s)).ToList();
             return serviceResponse;
         }
 

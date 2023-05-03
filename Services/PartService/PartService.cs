@@ -120,11 +120,13 @@ namespace RendszerRepo.Services.PartService
         {
             var serviceResponse = new ServiceResponse<GetPartDto>();
             var dbParts = await _context.Parts.ToListAsync();
-            var dbProject = await _context.Project.ToListAsync();
+            var dbStorage = await _context.Storages.ToListAsync();
+            var dbPrProp = await _context.ProjectProperties.ToListAsync();
 
             try {
                 var part = dbParts.First(p => p.partId == selectedPartId);
-                var project = dbProject.First(u => (u.ProjectId == selectedProjectId));
+                var project = dbPrProp.First(u => (u.ProjectId == selectedProjectId));
+                var storage = dbStorage.First(p => p.partId == selectedPartId);
 
                 if(part is null) {
                     throw new Exception($"Part with Id '{selectedPartId}' not found.");

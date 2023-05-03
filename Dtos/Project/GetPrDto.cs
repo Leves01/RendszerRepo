@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RendszerRepo.Models
+namespace RendszerRepo.Dtos.Project
 {
-    public class Project
+    public class GetPrDto
     {
-        [Key]
-        public int ProjectId { get; set; }
+        public int projectId {get; set;}
         public string ProjectName { get; set; }
         public string Status { get; set; }
         public string Location {get; set;}

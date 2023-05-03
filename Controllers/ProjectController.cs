@@ -19,14 +19,14 @@ namespace RendszerRepo.Controllers
         public async Task<ActionResult<ServiceResponse<List<GetProjectDto>>>> AddWorkTimeAndPrice(int projektid, int time, int price) 
         {
             var response = await _projectService.AddWorkTimeAndPrice(projektid, time, price);
-            if(response.Data is null) {
                 return NotFound(response);
+            if(response.Data is null) {
             }
             return Ok(response);
         }
 
-        [HttpPost("AddProject"), Authorize(Roles = "Technician")]
-        public async Task<ActionResult<ServiceResponse<List<GetProject_propertiesDto>>>> AddProject(AddProjectDto newProject) 
+        [HttpPost("AddProject")]
+        public async Task<ActionResult<ServiceResponse<List<GetPrDto>>>> AddProject(AddPrDto newProject) 
         {
             return Ok(await _projectService.AddProject(newProject));
         }

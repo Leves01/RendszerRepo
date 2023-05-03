@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace RendszerRepo.Models
 {
+    [Keyless]
     public class Project_properties
     {
-        [Key]
+        [Display(Name = "Projekt")]
         public int ProjectId { get; set; }
-       
-        public string ProjectName { get; set; }
-
-        public string Status { get; set; }
-
+        [ForeignKey("ProjectId")] 
+        public virtual Project Project { get; set; }
         [Display(Name = "AssignedWorker")]
         public int assignedId {get; set;}
-        
         [ForeignKey("UserId")] 
         public virtual User? User { get; set; }
-
-        public string Location {get; set;}
-        public string CustomerName{get; set;}
+        [Display(Name = "Part")] 
+        public int partId { get; set; }
+        [ForeignKey("partId")] 
+        public virtual Part Part {get; set;}
+        public int quantity {get; set;}
+        public int combinedPrice {get; set;}
 
     }
 }

@@ -9,6 +9,7 @@ global using RendszerRepo.Dtos.Part;
 global using RendszerRepo.Dtos.Storage;
 global using RendszerRepo.Dtos.Project;
 global using RendszerRepo.Dtos.Project_properties;
+global using RendszerRepo.Dtos.Project;
 
 //Mapper
 global using AutoMapper;
