@@ -14,9 +14,8 @@ namespace RendszerRepo.Models
         [ForeignKey("ProjectId")] 
         public virtual Project_properties Project_p { get; set; }
         [Display(Name = "Part")] 
-        public int partId { get; set; }
+        public List<int> partId{ get; set; }
         [ForeignKey("partId")] 
-        public virtual Part Parts { get; set; }
         public int quantity { get; set; }
         public int combinedPrice { get; set; }
         public int workTime { get; set;}

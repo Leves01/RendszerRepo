@@ -116,27 +116,27 @@ namespace RendszerRepo.Services.PartService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<GetPartDto>> PartToProject(int selectedPartId, int selectedProjectId, int selectedQuantity)
+        public async Task<ServiceResponse<GetPartDto>> PartToProject(PartToProjectDto newPartToProject)
         {
             var serviceResponse = new ServiceResponse<GetPartDto>();
             var dbParts = await _context.Parts.ToListAsync();
             var dbProject = await _context.Project.ToListAsync();
 
             try {
-                var part = dbParts.First(p => p.partId == selectedPartId);
-                var project = dbProject.First(u => (u.ProjectId == selectedProjectId));
+                var part = dbParts.First(p => p.partId == newPartToProject.partId);
+                var project = dbProject.First(u => (u.ProjectId == newPartToProject.ProjectId));
 
                 if(part is null) {
-                    throw new Exception($"Part with Id '{selectedPartId}' not found.");
+                    throw new Exception($"Part with Id '{newPartToProject.partId}' not found.");
                 }
                 if(project is null) {
-                    throw new Exception($"Project with Id '{selectedProjectId}' not found.");
+                    throw new Exception($"Project with Id '{newPartToProject.ProjectId}' not found.");
                 }
-                project.partId = part.partId;
-                project.quantity = selectedQuantity;
+                project.partId.Add(newPartToProject.partId);
+                project.quantity = newPartToProject.quantity;
                 
                 serviceResponse.Data = _mapper.Map<GetPartDto>(project);
-                await PartOutOfStorage(selectedPartId, selectedQuantity);
+                await PartOutOfStorage(newPartToProject.partId,newPartToProject.quantity);
             } 
             catch(Exception ex) {
                 serviceResponse.Success = false;
