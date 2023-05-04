@@ -125,7 +125,7 @@ namespace RendszerRepo.Services.PartService
 
             try {
                 var part = dbParts.First(p => p.partId == newPartToProject.partId);
-                var project = dbProject.First(u => (u.ProjectId == newPartToProject.ProjectId));
+                var project = dbPrProp.First(u => (u.ProjectId == newPartToProject.ProjectId));
 
                 if(part is null) {
                     throw new Exception($"Part with Id '{newPartToProject.partId}' not found.");

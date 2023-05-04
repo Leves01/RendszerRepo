@@ -49,10 +49,10 @@ namespace RendszerRepo.Services.ProjectService
         public async Task<ServiceResponse<GetProjectDto>> AddWorkTimeAndPrice(int projektid, int time, int price) 
         {
             var serviceResponse = new ServiceResponse<GetProjectDto>();
-            var dbProjects = await _context.Project.ToListAsync();
+            var dbProjectProperties = await _context.ProjectProperties.ToListAsync();
 
             try{
-                var selectedProject = dbProjects.FirstOrDefault(u => (u.ProjectId == projektid));
+                var selectedProject = dbProjectProperties.FirstOrDefault(u => (u.ProjectId == projektid));
                 if(selectedProject is null)
                 {
                     throw new Exception($"Project with Id '{projektid}' not found.");
@@ -97,9 +97,9 @@ namespace RendszerRepo.Services.ProjectService
         public async Task<ServiceResponse<GetProject_propertiesDto>> ProjectStatusChange(int projektid, string newstatus) 
         {
             var serviceResponse = new ServiceResponse<GetProject_propertiesDto>();
-            var dbProjectProperties = await _context.ProjectProperties.ToListAsync();
+            var dbProjects = await _context.Project.ToListAsync();
             try{
-                var selectedProjectProperties = dbProjectProperties .FirstOrDefault(u => (u.ProjectId == projektid));
+                var selectedProjectProperties = dbProjects .FirstOrDefault(u => (u.ProjectId == projektid));
                 if(selectedProjectProperties  is null)
                 {
                     throw new Exception($"Project with Id '{projektid}' not found.");
