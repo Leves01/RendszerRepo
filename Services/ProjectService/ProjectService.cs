@@ -46,15 +46,16 @@ namespace RendszerRepo.Services.ProjectService
         //projectid, partid, quantity, combinedPrice
         private static List<Part> projects = new List<Part> {};
      
-        public async Task<ServiceResponse<GetProjectDto>> AddWorkTimeAndPrice(int projektid, int time, int price) {
-
+        public async Task<ServiceResponse<GetProjectDto>> AddWorkTimeAndPrice(int projektid, int time, int price) 
+        {
             var serviceResponse = new ServiceResponse<GetProjectDto>();
             var dbProjects = await _context.Project.ToListAsync();
 
             try{
                 var selectedProject = dbProjects.FirstOrDefault(u => (u.ProjectId == projektid));
+                if(selectedProject is null)
+                {
                     throw new Exception($"Project with Id '{projektid}' not found.");
-                if(selectedProject is null) {
                 }
                 selectedProject.workPrice = price;
                 selectedProject.workTime = time;
@@ -67,6 +68,51 @@ namespace RendszerRepo.Services.ProjectService
                 
             await _context.SaveChangesAsync();
             return serviceResponse;   
+        }
+
+       /*public async Task<ServiceResponse<GetProjectDto>> PriceCalculation(int projektid, int time, int price) 
+        {
+            var serviceResponse = new ServiceResponse<GetProjectDto>();
+            var dbProjects = await _context.Project.ToListAsync();
+            var dbParts = await _context.Parts.ToListAsync();
+            
+            try{
+                var selectedProject = dbProjects.FirstOrDefault(u => (u.ProjectId == projektid));
+                if(selectedProject is null)
+                {
+                    throw new Exception($"Project with Id '{projektid}' not found.");
+                }
+                
+                selectedProject.workTime = time;
+                serviceResponse.Data = _mapper.Map<GetProjectDto>(selectedProject);
+            } catch(Exception ex) {
+                
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+
+            return serviceResponse;
+        }*/
+
+        public async Task<ServiceResponse<GetProject_propertiesDto>> ProjectStatusChange(int projektid, string newstatus) 
+        {
+            var serviceResponse = new ServiceResponse<GetProject_propertiesDto>();
+            var dbProjectProperties = await _context.ProjectProperties.ToListAsync();
+            try{
+                var selectedProjectProperties = dbProjectProperties .FirstOrDefault(u => (u.ProjectId == projektid));
+                if(selectedProjectProperties  is null)
+                {
+                    throw new Exception($"Project with Id '{projektid}' not found.");
+                }
+                
+                selectedProjectProperties.Status = newstatus;
+                serviceResponse.Data = _mapper.Map<GetProject_propertiesDto>(selectedProjectProperties);
+            } catch(Exception ex) {
+                
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+            return serviceResponse;
         }
     }
 }

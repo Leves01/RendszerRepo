@@ -36,5 +36,11 @@ namespace RendszerRepo.Controllers
         {
             return Ok(await _projectService.GetProjects());
         }
+
+        [HttpPost("ProjectStatusChange"), Authorize(Roles = "Technician")]
+        public async Task<ActionResult<ServiceResponse<GetProject_propertiesDto>>> ProjectStatusChange(int projektid, string newstatus) 
+        {
+            return Ok(await _projectService.ProjectStatusChange(projektid,newstatus));
+        }
     }
 }
