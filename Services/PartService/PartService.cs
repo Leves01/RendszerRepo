@@ -92,9 +92,9 @@ namespace RendszerRepo.Services.PartService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<GetPartDto>>> DeletePart(int id)
+        public async Task<ServiceResponse<GetPartDto>> DeletePart(int id)
         {
-            var serviceResponse = new ServiceResponse<List<GetPartDto>>();
+            var serviceResponse = new ServiceResponse<GetPartDto>();
             var dbParts = await _context.Parts.ToListAsync();
 
             try {
@@ -103,9 +103,9 @@ namespace RendszerRepo.Services.PartService
                     throw new Exception($"Part with Id '{id}' not found.");
                 }
 
-                dbParts.Remove(part);
+                _context.Parts.Remove(part);
             
-                serviceResponse.Data = dbParts.Select(p => _mapper.Map<GetPartDto>(p)).ToList();
+                serviceResponse.Data = _mapper.Map<GetPartDto>(part);
                 
             } catch(Exception ex) {
                 serviceResponse.Success = false;

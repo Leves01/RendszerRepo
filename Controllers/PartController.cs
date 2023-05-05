@@ -46,7 +46,7 @@ namespace RendszerRepo.Controllers
         }
 
         [HttpDelete("DeletePart"), Authorize(Roles = "WarehouseManager")]
-        public async Task<ActionResult<ServiceResponse<List<GetPartDto>>>> DeletePart(int id) 
+        public async Task<ActionResult<ServiceResponse<GetPartDto>>> DeletePart(int id) 
         {
             var response = await _partService.DeletePart(id);
             if(response.Data is null) {
