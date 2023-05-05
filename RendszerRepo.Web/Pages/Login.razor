@@ -1,0 +1,61 @@
+﻿@page "/"
+@using RendszerRepo.Dtos.User;
+@using RendszerRepo.Models.Dtos.Login;
+@using RendszerRepo.Web.Services.Contracts;
+@inject AuthenticationStateProvider _authStateProvider;
+@inject FEIUserService userService;
+@inject NavigationManager _navMgr;
+@inject HttpClient _httpClient;
+@inject ILocalStorageService ILocalStorageService;
+<h3>Login</h3>
+
+<div class="row my-2">
+    <div class="col-md-6">
+        <EditForm Model="loginModel" OnSubmit="DoLogin">
+            <div class="form-group">
+                <label for="Username">Username</label>
+               <InputText class="form-control" @bind-Value="loginModel.Username"/>
+            </div>
+
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <InputText type="password" class="form-control" @bind-Value="loginModel.Password" />
+            </div>
+
+            <div class="my-2">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+
+@code {
+    LoginDto loginModel = new LoginDto();
+    async Task DoLogin()
+    {
+        try
+        {
+            var response = await _httpClient.PostAsJsonAsync("/api/User/login", loginModel);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(result);
+                await ILocalStorageService.SetItemAsync("AppSettings:Token", result);
+                await _authStateProvider.GetAuthenticationStateAsync();
+                _navMgr.NavigateTo("/home");
+            }
+            else
+            {
+                Console.WriteLine($"Login failed with status code {response.StatusCode}");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
+    }
+}
+
