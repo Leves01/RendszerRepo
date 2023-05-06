@@ -10,3 +10,15 @@ C:\Rendszerfejl\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.dll
 C:\Rendszerfejl\RendszerRepo.Models\obj\Debug\net7.0\refint\RendszerRepo.Models.dll
 C:\Rendszerfejl\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.pdb
 C:\Rendszerfejl\RendszerRepo.Models\obj\Debug\net7.0\ref\RendszerRepo.Models.dll
+C:\Rendszerfejl\RendszerRepo\RendszerRepo.Models\bin\Debug\net7.0\RendszerRepo.Models.deps.json
+C:\Rendszerfejl\RendszerRepo\RendszerRepo.Models\bin\Debug\net7.0\RendszerRepo.Models.dll
+C:\Rendszerfejl\RendszerRepo\RendszerRepo.Models\bin\Debug\net7.0\RendszerRepo.Models.pdb
+C:\Rendszerfejl\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.csproj.AssemblyReference.cache
+C:\Rendszerfejl\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Rendszerfejl\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.AssemblyInfoInputs.cache
+C:\Rendszerfejl\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.AssemblyInfo.cs
+C:\Rendszerfejl\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.csproj.CoreCompileInputs.cache
+C:\Rendszerfejl\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.dll
+C:\Rendszerfejl\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\refint\RendszerRepo.Models.dll
+C:\Rendszerfejl\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.pdb
+C:\Rendszerfejl\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\ref\RendszerRepo.Models.dll

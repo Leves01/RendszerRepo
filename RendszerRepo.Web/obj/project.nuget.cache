@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0kjE4Z4UT3YE1X1ZDcY/+e0+aHm/1ViHML9ylPaPSpcHRxuT6dFbKUgfjeMlFOQPLURi2elMgznRPVcd6zvLKw==",
+  "dgSpecHash": "sUdja70pzVQgV5FSK3FB008SdO4Cs+mzVL20Kl59Lrgu8LP1kN+LMhS4Rh0nVWiWNEC8iVZ6VLxz89P3QkkIyA==",
   "success": true,
-  "projectFilePath": "C:\\Rendszerfejl\\RendszerRepo.Web\\RendszerRepo.Web.csproj",
+  "projectFilePath": "C:\\Rendszerfejl\\RendszerRepo\\RendszerRepo.Web\\RendszerRepo.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Boros Donát\\.nuget\\packages\\blazored.localstorage\\4.3.0\\blazored.localstorage.4.3.0.nupkg.sha512",
     "C:\\Users\\Boros Donát\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.5\\microsoft.aspnetcore.authorization.7.0.5.nupkg.sha512",

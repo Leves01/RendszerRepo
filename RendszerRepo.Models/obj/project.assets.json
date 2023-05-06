@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Rendszerfejl\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
+      "projectUniqueName": "C:\\Rendszerfejl\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
       "projectName": "RendszerRepo.Models",
-      "projectPath": "C:\\Rendszerfejl\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
+      "projectPath": "C:\\Rendszerfejl\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
       "packagesPath": "C:\\Users\\Boros Donát\\.nuget\\packages\\",
-      "outputPath": "C:\\Rendszerfejl\\RendszerRepo.Models\\obj\\",
+      "outputPath": "C:\\Rendszerfejl\\RendszerRepo\\RendszerRepo.Models\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Boros Donát\\AppData\\Roaming\\NuGet\\NuGet.Config",

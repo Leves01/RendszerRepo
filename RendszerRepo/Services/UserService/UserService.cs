@@ -52,8 +52,9 @@ namespace RendszerRepo.Services.UserService
             return serviceResponse;
         }
 
-        {
+        
         public async Task<ServiceResponse<GetUserDto>> GetUsersById(int id)
+        {
             var serviceResponse = new ServiceResponse<GetUserDto>();
             var dbUsers = await _context.Users.FirstOrDefaultAsync(u => u.userId == id);
             serviceResponse.Data = _mapper.Map<GetUserDto>(dbUsers);
