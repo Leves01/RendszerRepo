@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-
 namespace RendszerRepo.Services.UserService
+
 {
     public class UserService : IUserService
     { 
@@ -26,11 +26,11 @@ namespace RendszerRepo.Services.UserService
         public async Task<ServiceResponse<List<GetUserDto>>> AddUser(AddUserDto newUser)
         {
             var serviceResponse = new ServiceResponse<List<GetUserDto>>();
+            // if(currentUser.userRole != Roles.admin) {
+            //     throw new Exception($"You do not have permission to use this function");
             var dbUsers = await _context.Users.ToListAsync();
 
             var alreadyUser = dbUsers.FirstOrDefault(u => (u.username == newUser.username));
-            // if(currentUser.userRole != Roles.admin) {
-            //     throw new Exception($"You do not have permission to use this function");
             // } else {
                 if(alreadyUser is not null) {
                     throw new Exception($"User with '{newUser.username}' username already exists.");
@@ -52,22 +52,20 @@ namespace RendszerRepo.Services.UserService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<GetUserDto>> GetUsersById(int id)
         {
+        public async Task<ServiceResponse<GetUserDto>> GetUsersById(int id)
             var serviceResponse = new ServiceResponse<GetUserDto>();
             var dbUsers = await _context.Users.FirstOrDefaultAsync(u => u.userId == id);
             serviceResponse.Data = _mapper.Map<GetUserDto>(dbUsers);
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<string>> Login(string username, string password) {
-            var serviceResponse = new ServiceResponse<string>();
+        public async Task<string> Login(string username, string password) {
             var currentUser = await _context.Users.FirstAsync(u => (u.username == username) && (u.password == password));
 
-            string token = CreateToken(currentUser);
-
-            serviceResponse.Data = token;
-            return serviceResponse;
+            string token = CreateToken(currentUser);
+
+            return token;
         }
 
         public string CreateToken(User user) {
@@ -93,6 +91,6 @@ namespace RendszerRepo.Services.UserService
 
             return jwt;
         }
-
     }
+
 }

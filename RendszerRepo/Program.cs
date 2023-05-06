@@ -1,3 +1,5 @@
+using Microsoft.Net.Http.Headers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -46,7 +48,6 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPartService, PartService>();
 builder.Services.AddScoped<IStorageService, StorageService>();
-builder.Services.AddScoped<IProjectService, ProjectService>();
 
 
 
@@ -58,6 +59,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(policy =>
+	policy.WithOrigins("http://localhost:7233", "https://localhost:7233")
+	.AllowAnyMethod()
+	.WithHeaders(HeaderNames.ContentType, "Authorization")
+    .AllowCredentials()
+);
 
 app.UseHttpsRedirection();
 

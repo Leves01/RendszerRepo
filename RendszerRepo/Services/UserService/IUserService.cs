@@ -11,7 +11,7 @@ namespace RendszerRepo.Services.UserService
         Task<ServiceResponse<List<GetUserDto>>> GetAllUsers();
         Task<ServiceResponse<GetUserDto>> GetUsersById(int id);
         Task<ServiceResponse<List<GetUserDto>>> AddUser(AddUserDto newUser);
-        Task<ServiceResponse<string>> Login(string username, string password);
+        Task<string> Login(string username, string password);
         public string CreateToken(User user);
     }
 }

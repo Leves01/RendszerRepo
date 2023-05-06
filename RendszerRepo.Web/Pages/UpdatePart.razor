@@ -1,0 +1,72 @@
+﻿@page "/updatepart/{partId:int}"
+@inherits PartsBase
+@inject NavigationManager _navMgr
+
+<h3>Update Part</h3>
+
+@if (Part == null)
+{
+    <h4>Loading part...</h4>
+}
+else
+{
+    <div class="form-group">
+        <label for="partName">Name</label>
+        <input type="text" class="form-control" id="partName" @bind="UpdatedPart.partName">
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" class="form-control" id="price" @bind="UpdatedPart.price">
+    </div>
+
+    <div class="form-group">
+        <label for="maxCount">Max Count</label>
+        <input type="number" class="form-control" id="maxCount" @bind="UpdatedPart.maxCount">
+    </div>
+
+    <div>
+        <button class="btn btn-primary" style="margin-top: 20px;" @onclick="@DoUpdatePart">Update</button>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int partId { get; set; }
+
+    private GetPartDto Part { get; set; }
+
+    private UpdatePartDto UpdatedPart { get; set; } = new UpdatePartDto();
+
+    protected async override Task OnInitializedAsync()
+    {
+        Parts = await FEPartService.GetAllParts();
+        Part = Parts.Data.FirstOrDefault(p => p.partId == partId);
+        UpdatedPart.partId = Part.partId;
+        UpdatedPart.partName = Part.partName;
+        UpdatedPart.price = Part.price;
+        UpdatedPart.maxCount = Part.maxCount;
+    }
+
+    protected async Task DoUpdatePart()
+    {
+        var response = await FEPartService.UpdatePart(UpdatedPart);
+
+        if (response.Success)
+        {
+            await UpdatePart(new GetPartDto
+                {
+                    partId = UpdatedPart.partId,
+                    partName = UpdatedPart.partName,
+                    price = UpdatedPart.price,
+                    maxCount = UpdatedPart.maxCount
+                });
+        }
+        else
+        {
+            ShowErrorMessage = true;
+            ErrorMessage = response.Message;
+        }
+    }
+
+}

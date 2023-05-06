@@ -1,0 +1,23 @@
+﻿@page "/addpart"
+@inherits PartsBase
+
+<h3>Add Part</h3>
+
+
+    <div class="form-group">
+        <label for="partName">Part Name:</label>
+        <input type="text" class="form-control" id="partName" @bind="@NewPart.partName" />
+    </div>
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" class="form-control" id="price" @bind="@NewPart.price" />
+    </div>
+    <div class="form-group">
+        <label for="maxCount">Max Count:</label>
+        <input type="number" class="form-control" id="maxCount" @bind="@NewPart.maxCount" />
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" style="margin-top: 20px;" @onclick="@AddNewPart">Add Part</button>
+    </div>
+

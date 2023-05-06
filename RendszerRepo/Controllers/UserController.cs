@@ -38,8 +38,8 @@ namespace RendszerRepo.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(string username, string password) {
-            return Ok(await _userService.Login(username, password));
+        public async Task<ActionResult<string>> Login(LoginDto user) {
+            return Ok(await _userService.Login(user.Username, user.Password));
         }
 
     }

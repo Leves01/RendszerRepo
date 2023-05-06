@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\RendszerRepo.Web.props" />
+</Project>
