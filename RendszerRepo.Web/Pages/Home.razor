@@ -1,0 +1,36 @@
+﻿@page "/home"
+@attribute [Authorize]
+<h3>Home</h3>
+
+<p>Hello!</p>
+
+<AuthorizeView>
+	<Authorized>
+		<p>You can only see this content if you're authenticated.</p>
+	</Authorized>
+	<NotAuthorized>
+		<p>You're not authorized.</p>
+	</NotAuthorized>
+</AuthorizeView>
+
+<AuthorizeView Roles="WarehouseManager">
+	<Authorized>
+		<p>You can only see this content if you're a Manager.</p>
+	</Authorized>
+	<NotAuthorized>
+		<p>You're not authorized as a Manager.</p>
+	</NotAuthorized>
+</AuthorizeView>
+
+<AuthorizeView Roles="Admin">
+	<Authorized>
+		<p>You can only see this content if you're an Admin.</p>
+	</Authorized>
+	<NotAuthorized>
+		<p>You're not authorized as an Admin.</p>
+	</NotAuthorized>
+</AuthorizeView>
+@code {
+
+}
+
