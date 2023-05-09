@@ -120,7 +120,6 @@ namespace RendszerRepo.Services.PartService
         {
             var serviceResponse = new ServiceResponse<GetPartDto>();
             var dbParts = await _context.Parts.ToListAsync();
-            var dbStorage = await _context.Storages.ToListAsync();
             var dbPrProp = await _context.ProjectProperties.ToListAsync();
 
             try {
@@ -133,7 +132,8 @@ namespace RendszerRepo.Services.PartService
                 if(project is null) {
                     throw new Exception($"Project with Id '{newPartToProject.ProjectId}' not found.");
                 }
-                project.partId.Add(newPartToProject.partId);
+
+                project.partId = newPartToProject.partId;
                 project.quantity = newPartToProject.quantity;
                 
                 serviceResponse.Data = _mapper.Map<GetPartDto>(project);

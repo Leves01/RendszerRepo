@@ -70,7 +70,7 @@ namespace RendszerRepo.Services.ProjectService
             return serviceResponse;   
         }
 
-       /*public async Task<ServiceResponse<GetProjectDto>> PriceCalculation(int projektid, int time, int price) 
+       /*public async Task<ServiceResponse<GetProjectDto>> PriceCalculation(int projektid) 
         {
             var serviceResponse = new ServiceResponse<GetProjectDto>();
             var dbProjects = await _context.Project.ToListAsync();
@@ -83,7 +83,7 @@ namespace RendszerRepo.Services.ProjectService
                     throw new Exception($"Project with Id '{projektid}' not found.");
                 }
                 
-                selectedProject.workTime = time;
+                
                 serviceResponse.Data = _mapper.Map<GetProjectDto>(selectedProject);
             } catch(Exception ex) {
                 

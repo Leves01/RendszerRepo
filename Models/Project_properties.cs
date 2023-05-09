@@ -18,7 +18,7 @@ namespace RendszerRepo.Models
         [ForeignKey("UserId")] 
         public virtual User? User { get; set; }
         [Display(Name = "Part")] 
-        public List<int> partId { get; set; }
+        public int partId { get; set; }
         [ForeignKey("partId")] 
         public virtual Part Part {get; set;}
         public int quantity {get; set;}
