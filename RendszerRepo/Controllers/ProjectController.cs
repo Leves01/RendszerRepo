@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using RendszerRepo.Models.Dtos.Project;
 
 namespace RendszerRepo.Controllers
 {
@@ -38,9 +39,9 @@ namespace RendszerRepo.Controllers
         }
 
         [HttpPost("ProjectStatusChange"), Authorize(Roles = "Technician")]
-        public async Task<ActionResult<ServiceResponse<GetProject_propertiesDto>>> ProjectStatusChange(int projektid, string newstatus) 
+        public async Task<ActionResult<ServiceResponse<GetProject_propertiesDto>>> ProjectStatusChange(UpdateStatusDto newStatus) 
         {
-            return Ok(await _projectService.ProjectStatusChange(projektid,newstatus));
+            return Ok(await _projectService.ProjectStatusChange(newStatus));
         }
     }
 }

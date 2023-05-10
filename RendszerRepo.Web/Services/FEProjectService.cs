@@ -1,7 +1,9 @@
 ﻿using RendszerRepo.Dtos.Part;
 using RendszerRepo.Dtos.Project;
 using RendszerRepo.Dtos.Project_properties;
+using RendszerRepo.Dtos.Storage;
 using RendszerRepo.Models;
+using RendszerRepo.Models.Dtos.Project;
 using RendszerRepo.Web.Services.Contracts;
 using System.Net.Http.Json;
 
@@ -15,9 +17,10 @@ namespace RendszerRepo.Web.Services
         {
             this.httpClient = httpClient;
         }
-        public Task<ServiceResponse<List<GetPrDto>>> AddProject(AddPrDto newProject)
+        public async Task<ServiceResponse<List<GetPrDto>>> AddProject(AddPrDto newProject)
         {
-            throw new NotImplementedException();
+            var response = await this.httpClient.PostAsJsonAsync("/api/Project/AddProject", newProject);
+            return await response.Content.ReadFromJsonAsync<ServiceResponse<List<GetPrDto>>>();
         }
 
         public Task<ServiceResponse<GetProjectDto>> AddWorkTimeAndPrice(int projektid, int time, int price)
@@ -31,9 +34,24 @@ namespace RendszerRepo.Web.Services
             return projects;
         }
 
-        public Task<ServiceResponse<GetProject_propertiesDto>> ProjectStatusChange(int projektid, string newstatus)
+        public async Task<ServiceResponse<GetPrDto>> ProjectStatusChange(UpdateStatusDto newStatus)
         {
-            throw new NotImplementedException();
+            var response = await this.httpClient.PutAsJsonAsync("api/Project/ProjectStatusChange", newStatus);
+
+            var result = new ServiceResponse<GetPrDto>();
+
+            if (response.IsSuccessStatusCode)
+            {
+                result.Data = await response.Content.ReadFromJsonAsync<GetPrDto>();
+            }
+            else
+            {
+                var errorMessage = await response.Content.ReadAsStringAsync();
+                result.Success = false;
+                result.Message = errorMessage;
+            }
+
+            return result;
         }
     }
 }

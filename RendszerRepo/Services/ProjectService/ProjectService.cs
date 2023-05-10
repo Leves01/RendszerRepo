@@ -1,3 +1,4 @@
+using RendszerRepo.Models.Dtos.Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,18 +95,18 @@ namespace RendszerRepo.Services.ProjectService
             return serviceResponse;
         }*/
 
-        public async Task<ServiceResponse<GetProject_propertiesDto>> ProjectStatusChange(int projektid, string newstatus) 
+        public async Task<ServiceResponse<GetProject_propertiesDto>> ProjectStatusChange(UpdateStatusDto newStatus) 
         {
             var serviceResponse = new ServiceResponse<GetProject_propertiesDto>();
             var dbProjects = await _context.Project.ToListAsync();
             try{
-                var selectedProjectProperties = dbProjects .FirstOrDefault(u => (u.ProjectId == projektid));
+                var selectedProjectProperties = dbProjects .FirstOrDefault(u => (u.ProjectId == newStatus.projectId));
                 if(selectedProjectProperties  is null)
                 {
-                    throw new Exception($"Project with Id '{projektid}' not found.");
+                    throw new Exception($"Project with Id '{newStatus.projectId}' not found.");
                 }
                 
-                selectedProjectProperties.Status = newstatus;
+                selectedProjectProperties.Status = newStatus.Status;
                 serviceResponse.Data = _mapper.Map<GetProject_propertiesDto>(selectedProjectProperties);
             } catch(Exception ex) {
                 

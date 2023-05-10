@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RendszerRepo.Models.Dtos.Project;
 
 
 namespace RendszerRepo.Services.ProjectService
@@ -12,6 +13,6 @@ namespace RendszerRepo.Services.ProjectService
         Task<ServiceResponse<List<GetPrDto>>> GetProjects();
        Task<ServiceResponse<GetProjectDto>> AddWorkTimeAndPrice(int projektid, int time, int price);
        //Task<ServiceResponse<GetProjectDto>> PriceCalculation(int projektid, int time, int price);
-       Task<ServiceResponse<GetProject_propertiesDto>> ProjectStatusChange(int projektid, string newstatus);
+       Task<ServiceResponse<GetProject_propertiesDto>> ProjectStatusChange(UpdateStatusDto newStatus);
     }
 }

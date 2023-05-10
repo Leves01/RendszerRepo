@@ -24,6 +24,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkUGFydC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Pages/AddProject.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkUHJvamVjdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Pages/AddStorage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkU3RvcmFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -54,6 +58,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Pages/UpdatePart.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXBkYXRlUGFydC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Pages/UpdateStatus.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXBkYXRlU3RhdHVzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Pages/UpdateStorage.razor]

@@ -1,5 +1,8 @@
 ﻿@page "/projects"
+@using RendszerRepo.Dtos.Project_properties;
+@using RendszerRepo.Dtos.Project;
 @inherits ProjectsBase
+@inject NavigationManager _navMgr;
 
 @if (Projects == null)
 {
@@ -30,7 +33,7 @@ else
                     <td>@project.Location</td>
                     <td>@project.CustomerName</td>
                     <td>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" onclick="@(() => ToUpdateStatus(project))">
                             <i class="oi oi-pencil"></i>
                         </button>
                     </td>
@@ -39,9 +42,17 @@ else
         </tbody>
     </table>
 
-    <button class="btn btn-success" >Add Project</button>
+    <button class="btn btn-success" @onclick="ToAddProject">Add Project</button>
 }
 
 @code {
+    private void ToAddProject()
+    {
+        _navMgr.NavigateTo("/addproject");
+    }
 
+    private void ToUpdateStatus(GetPrDto project)
+    {
+        _navMgr.NavigateTo($"/updatestatus/{project.projectId}");
+    }
 }

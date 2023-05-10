@@ -1,0 +1,65 @@
+﻿@page "/updatestatus/{projectId:int}"
+@using RendszerRepo.Dtos.Project;
+@using RendszerRepo.Models.Dtos.Project;
+@inherits ProjectsBase
+<h3>Update Status</h3>
+
+@if (Projects == null)
+{
+    <h4>Loading projects...</h4>
+}
+else
+{
+    <div class="form-group">
+        <label for="status">Status</label>
+        <input type="text" class="form-control" id="status" @bind="UpdatedStatus.Status">
+    </div>
+
+    <div>
+        <button class="btn btn-primary" style="margin-top: 20px;" @onclick="@DoUpdateStatus">Update</button>
+    </div>
+}
+
+@if (ShowErrorMessage)
+{
+    <div class="alert alert-danger" style="margin-top: 50px;" role="alert">
+        @ErrorMessage
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int projectId { get; set; }
+
+    private GetPrDto Project { get; set; }
+
+    private UpdateStatusDto UpdatedStatus { get; set; } = new UpdateStatusDto();
+
+    protected async override Task OnInitializedAsync()
+    {
+        Projects = await FEProjectService.GetProjects();
+        Project = Projects.Data.FirstOrDefault(p => p.projectId == projectId);
+        UpdatedStatus.projectId = Project.projectId;
+        UpdatedStatus.Status = Project.Status;
+    }
+
+    protected async Task DoUpdateStatus()
+    {
+        var response = await FEProjectService.ProjectStatusChange(UpdatedStatus);
+
+        if (response.Success)
+        {
+            await UpdateStatus(new GetPrDto
+                {
+                    projectId = UpdatedStatus.projectId,
+                    Status = UpdatedStatus.Status
+                });
+        }
+        else
+        {
+            ShowErrorMessage = true;
+            ErrorMessage = response.Message;
+        }
+    }
+
+}
