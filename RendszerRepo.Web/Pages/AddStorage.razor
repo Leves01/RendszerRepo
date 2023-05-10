@@ -1,0 +1,44 @@
+﻿@page "/addstorage"
+@inherits StorageBase
+
+<h3>AddStorage</h3>
+
+<div class="form-group">
+    <label for="partId">Part Id:</label>
+    <input type="number" class="form-control" id="partId" @bind="@NewStorage.partId" />
+</div>
+<div class="form-group">
+    <label for="row">Row:</label>
+    <input type="number" class="form-control" id="row" @bind="@NewStorage.row" />
+</div>
+<div class="form-group">
+    <label for="column">Column:</label>
+    <input type="number" class="form-control" id="column" @bind="@NewStorage.column" />
+</div>
+<div class="form-group">
+    <label for="drawer">Drawer:</label>
+    <input type="number" class="form-control" id="drawer" @bind="@NewStorage.drawer" />
+</div>
+<div class="form-group">
+    <label for="countofparts">Count of Parts:</label>
+    <input type="number" class="form-control" id="countofparts" @bind="@NewStorage.countOfParts" />
+</div>
+<div class="form-group">
+    <label for="max">Max:</label>
+    <input type="number" class="form-control" id="max" @bind="@NewStorage.max" />
+</div>
+
+<div class="form-group">
+    <button type="submit" class="btn btn-primary" style="margin-top: 20px;" @onclick="@AddNewStorage">Add Storage</button>
+</div>
+
+@if (ShowErrorMessage)
+{
+    <div class="alert alert-danger" style="margin-top: 50px;" role="alert">
+        @ErrorMessage
+    </div>
+}
+
+@code {
+
+}

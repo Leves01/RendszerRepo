@@ -1,0 +1,88 @@
+﻿@page "/updatestorage/{storageId:int}"
+@inherits StorageBase
+@inject NavigationManager _navMgr
+
+<h3>Update Storage</h3>
+
+@if (Storages == null)
+{
+    <h4>Loading storage...</h4>
+}
+else
+{
+    <div class="form-group">
+        <label for="partId">Part Id</label>
+        <input type="number" class="form-control" id="partId" @bind="UpdatedStorage.partId">
+    </div>
+
+    <div class="form-group">
+        <label for="row">Row</label>
+        <input type="number" class="form-control" id="row" @bind="UpdatedStorage.row">
+    </div>
+
+    <div class="form-group">
+        <label for="column">Column</label>
+        <input type="number" class="form-control" id="column" @bind="UpdatedStorage.column">
+    </div>
+
+    <div class="form-group">
+        <label for="drawer">Drawer</label>
+        <input type="number" class="form-control" id="drawer" @bind="UpdatedStorage.drawer">
+    </div>
+
+    <div class="form-group">
+        <label for="countofparts">Count of Parts</label>
+        <input type="number" class="form-control" id="countofparts" @bind="UpdatedStorage.countOfParts">
+    </div>
+
+    <div>
+        <button class="btn btn-primary" style="margin-top: 20px;" @onclick="@DoUpdateStorage">Update</button>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int storageId { get; set; }
+
+    private GetStoragesDto Storage { get; set; }
+
+    private UpdateStoragesDto UpdatedStorage { get; set; } = new UpdateStoragesDto();
+
+    protected async override Task OnInitializedAsync()
+    {
+        Storages = await FEStorageService.GetStorages();
+        Storage = Storages.Data.FirstOrDefault(p => p.storageId == storageId);
+        UpdatedStorage.storageId = Storage.storageId;
+        UpdatedStorage.partId = Storage.partId;
+        UpdatedStorage.row = Storage.row;
+        UpdatedStorage.column = Storage.column;
+        UpdatedStorage.drawer = Storage.drawer;
+        UpdatedStorage.countOfParts = Storage.countOfParts;
+        UpdatedStorage.max = Storage.max;
+    }
+
+    protected async Task DoUpdateStorage()
+    {
+        var response = await FEStorageService.UpdateStorage(UpdatedStorage);
+
+        if (response.Success)
+        {
+            await UpdateStorage(new GetStoragesDto
+                {
+                    storageId = UpdatedStorage.storageId,
+                    partId = UpdatedStorage.partId,
+                    row = UpdatedStorage.row,
+                    column = UpdatedStorage.column,
+                    drawer = UpdatedStorage.drawer,
+                    countOfParts = UpdatedStorage.countOfParts,
+                    max = UpdatedStorage.max
+                });
+        }
+        else
+        {
+            ShowErrorMessage = true;
+            ErrorMessage = response.Message;
+        }
+    }
+
+}

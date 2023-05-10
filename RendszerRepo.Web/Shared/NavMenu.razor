@@ -21,6 +21,27 @@
                     </NavLink>
             </AuthorizeView>
         </div>
+        <div class="nav-item px-3">
+            <AuthorizeView Roles="WarehouseManager">
+                <NavLink class="nav-link" href="storage">
+                    <span class="oi oi-tags" aria-hidden="true"></span> Storage
+                </NavLink>
+            </AuthorizeView>
+        </div>
+        <div class="nav-item px-3">
+            <AuthorizeView Roles="Technician">
+                <NavLink class="nav-link" href="projects">
+                    <span class="oi oi-tags" aria-hidden="true"></span> Projects
+                </NavLink>
+            </AuthorizeView>
+        </div>
+        <div class="nav-item px-3">
+            <AuthorizeView Roles="Technician">
+                <NavLink class="nav-link" href="tparts">
+                    <span class="oi oi-tags" aria-hidden="true"></span> Parts
+                </NavLink>
+            </AuthorizeView>
+        </div>
     </nav>
 </div>
 

@@ -1,0 +1,44 @@
+﻿@page "/tparts"
+@inherits PartsBase
+
+@if (Parts == null)
+{
+    <h3>Loading parts...</h3>
+}
+else
+{
+    <h3>Parts</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Max Count</th>
+                <th>Part to Project</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var part in Parts?.Data)
+            {
+                <tr>
+                    <td>@part.partId</td>
+                    <td>@part.partName</td>
+                    <td>@part.price</td>
+                    <td>@part.maxCount</td>
+                    <td>
+                        <button class="btn btn-primary">
+                            <i class="oi oi-pencil"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+
+@code {
+
+}

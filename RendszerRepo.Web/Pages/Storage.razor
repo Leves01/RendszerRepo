@@ -1,0 +1,79 @@
+﻿@page "/storage"
+@inherits StorageBase
+@inject NavigationManager _navMgr;
+
+
+@if (Storages == null)
+{
+    <h3>Loading storage...</h3>
+}
+else
+{
+    <h3>Storage</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Part Id</th>
+                <th>Row</th>
+                <th>Column</th>
+                <th>Drawer</th>
+                <th>Count of Parts</th>
+                <th>Max</th>
+                <th>Update</th>
+                <th>Update Max</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var storage in Storages?.Data)
+            {
+                <tr>
+                    <td>@storage.storageId</td>
+                    <td>@storage.partId</td>
+                    <td>@storage.row</td>
+                    <td>@storage.column</td>
+                    <td>@storage.drawer</td>
+                    <td>@storage.countOfParts</td>
+                    <td>@storage.max</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="@(() => ToUpdateStorage(storage))">
+                            <i class="oi oi-pencil"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" onclick="@(() => ToUpdateMax(storage))">
+                            <i class="oi oi-pencil"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" onclick="@(() => DeleteStorage(storage.storageId))">
+                            <i class="oi oi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button class="btn btn-success" @onclick="ToAddStorage">Add</button>
+}
+
+
+@code {
+    private void ToAddStorage()
+    {
+        _navMgr.NavigateTo("/addstorage");
+    }
+
+    private void ToUpdateStorage(GetStoragesDto storage)
+    {
+        _navMgr.NavigateTo($"/updatestorage/{storage.storageId}");
+    }
+
+    private void ToUpdateMax(GetStoragesDto storage)
+    {
+        _navMgr.NavigateTo($"/updatestoragemax/{storage.storageId}");
+    }
+}

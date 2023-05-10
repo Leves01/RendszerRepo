@@ -124,7 +124,7 @@ namespace RendszerRepo.Services.StorageService
                     throw new Exception($"Storage with Id '{id}' not found.");
                 }
 
-                dbStorage.Remove(stored);
+                _context.Storages.Remove(stored);
 
                 
             

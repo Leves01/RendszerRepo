@@ -24,12 +24,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkUGFydC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Pages/FetchData.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
+[C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Pages/AddStorage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkU3RvcmFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Pages/Home.razor]
@@ -44,8 +40,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Pages/Projects.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Pages/Storage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RvcmFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Pages/TParts.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVFBhcnRzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Pages/UpdatePart.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXBkYXRlUGFydC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Pages/UpdateStorage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXBkYXRlU3RvcmFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Pages/UpdateStorageMax.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXBkYXRlU3RvcmFnZU1heC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Rendszerfejl/RendszerRepo/RendszerRepo.Web/Shared/LoginLogoutButton.razor]

@@ -1,0 +1,65 @@
+﻿@page "/updatestoragemax/{storageId:int}"
+@inherits StorageBase
+@inject NavigationManager _navMgr
+
+<h3>Update Max</h3>
+
+@if (Storages == null)
+{
+    <h4>Loading storage...</h4>
+}
+else
+{
+    <div class="form-group">
+        <label for="max">Max</label>
+        <input type="number" class="form-control" id="max" @bind="UpdatedMax.max">
+    </div>
+
+    <div>
+        <button class="btn btn-primary" style="margin-top: 20px;" @onclick="@DoUpdateMax">Update</button>
+    </div>
+}
+
+@if (ShowErrorMessage)
+{
+    <div class="alert alert-danger" style="margin-top: 50px;" role="alert">
+        @ErrorMessage
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int storageId { get; set; }
+
+    private GetStoragesDto Storage { get; set; }
+
+    private UpdateMaxDto UpdatedMax { get; set; } = new UpdateMaxDto();
+
+    protected async override Task OnInitializedAsync()
+    {
+        Storages = await FEStorageService.GetStorages();
+        Storage = Storages.Data.FirstOrDefault(p => p.storageId == storageId);
+        UpdatedMax.storageId = Storage.storageId;
+        UpdatedMax.max = Storage.max;
+    }
+
+    protected async Task DoUpdateMax()
+    {
+        var response = await FEStorageService.UpdateMax(UpdatedMax);
+
+        if (response.Success)
+        {
+            await UpdateMax(new GetStoragesDto
+                {
+                    storageId = UpdatedMax.storageId,
+                    max = UpdatedMax.max
+                });
+        }
+        else
+        {
+            ShowErrorMessage = true;
+            ErrorMessage = response.Message;
+        }
+    }
+
+}

@@ -60,7 +60,7 @@ namespace RendszerRepo.Controllers
             return Ok(response);
         }
 
-        [HttpDelete("DeleteStorage"), Authorize(Roles = "WarehouseManager")]
+        [HttpDelete("DeleteStorage/{id:int}"), Authorize(Roles = "WarehouseManager")]
         public async Task<ActionResult<ServiceResponse<List<GetStoragesDto>>>> DeletePart(int id) 
         {
             var response = await _storageService.DeleteStorage(id);

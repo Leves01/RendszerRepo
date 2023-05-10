@@ -15,6 +15,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7129/") });
 builder.Services.AddScoped<FEIPartService, FEPartService>();
 builder.Services.AddScoped<FEIUserService, FEUserService>();
+builder.Services.AddScoped<FEIStorageService, FEStorageService>();
+builder.Services.AddScoped<FEIProjectService, FEProjectService>();
 builder.Services.AddScoped<AuthenticationStateProvider, AuthProvider>();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddBlazoredLocalStorage();
