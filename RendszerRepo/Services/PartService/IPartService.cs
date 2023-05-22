@@ -14,6 +14,7 @@ namespace RendszerRepo.Services.PartService
         Task<ServiceResponse<GetPartDto>> DeletePart(int id);
         Task<ServiceResponse<GetPartDto>> UpdatePartPrice(UpdatePartPriceDto updatedPart);
         Task<ServiceResponse<GetPartDto>> PartToProject(PartToProjectDto newdto);
-        
+        Task<ServiceResponse<List<GetReserveDto>>> getReserves();
+        Task<ServiceResponse<List<GetReserveDto>>> addReserves(AddReserveDto newReserve);       
     }
 }

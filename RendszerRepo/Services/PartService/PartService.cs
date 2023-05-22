@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace RendszerRepo.Services.PartService
 {
     public class PartService : IPartService
@@ -137,7 +138,7 @@ namespace RendszerRepo.Services.PartService
                 project.quantity = newPartToProject.quantity;
                 
                 serviceResponse.Data = _mapper.Map<GetPartDto>(project);
-                await PartOutOfStorage(newPartToProject.partId,newPartToProject.quantity);
+                await PartOutOfStorage(newPartToProject.ProjectId, newPartToProject.partId, newPartToProject.quantity);
             } 
             catch(Exception ex) {
                 serviceResponse.Success = false;
@@ -147,17 +148,30 @@ namespace RendszerRepo.Services.PartService
             await _context.SaveChangesAsync();
             return serviceResponse;
         }
-        public async Task<ServiceResponse<GetStoragesDto>> PartOutOfStorage(int selectedPartId, int selectedQuantity)
+        public async Task<ServiceResponse<GetStoragesDto>> PartOutOfStorage(int selectedProjectId, int selectedPartId, int selectedQuantity)
         {
             var serviceResponse = new ServiceResponse<GetStoragesDto>();
             var dbStorage = await _context.Storages.ToListAsync();
+            var dbProjects = await _context.ProjectProperties.ToListAsync();
 
             try{
                 var storage = dbStorage.First(p => p.partId == selectedPartId);
-                if((storage.countOfParts-selectedQuantity)<0)
-                    throw new Exception($"Not enough parts.");
-                else
+                var projects = dbProjects.First(p => p.ProjectId == selectedProjectId);
+                if((storage.countOfParts-selectedQuantity)<0) {
+                    // throw new Exception($"Not enough parts.");
+                    var resDto = new AddReserveDto() 
+                    {
+                        projectId = selectedProjectId,
+                        partId = selectedPartId,
+                        neededAmount = Math.Abs(storage.countOfParts-selectedQuantity)
+                    };
+
+                    await addReserves(resDto);
+                }
+                else {
                     storage.countOfParts-=selectedQuantity;
+                }
+                    
                 serviceResponse.Data = _mapper.Map<GetStoragesDto>(storage);
             }
             catch(Exception ex) {
@@ -168,5 +182,24 @@ namespace RendszerRepo.Services.PartService
             await _context.SaveChangesAsync();
             return serviceResponse;
         }
-     }
+
+        public async Task<ServiceResponse<List<GetReserveDto>>> getReserves()
+        {
+            var serviceResponse = new ServiceResponse<List<GetReserveDto>>();
+            var dbReserves = await _context.Reserves.ToListAsync();
+            serviceResponse.Data = dbReserves.Select(r => _mapper.Map<GetReserveDto>(r)).ToList();
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<List<GetReserveDto>>> addReserves(AddReserveDto newReserve)
+        {
+            var serviceResponse = new ServiceResponse<List<GetReserveDto>>();
+            var dbReserve = await _context.Reserves.ToListAsync();
+
+            _context.Reserves.Add(_mapper.Map<reservedParts>(newReserve));
+            
+            await _context.SaveChangesAsync();
+            return serviceResponse;
+        }
+    }
 }

@@ -34,6 +34,10 @@ namespace RendszerRepo
             //Project
             CreateMap<Project, GetPrDto>();
             CreateMap<AddPrDto, Project>();
+
+            //Reserve
+            CreateMap<reservedParts, GetReserveDto>();
+            CreateMap<AddReserveDto, reservedParts>();
             
             //Dependecies
             CreateMap<Project, GetPartDto>();

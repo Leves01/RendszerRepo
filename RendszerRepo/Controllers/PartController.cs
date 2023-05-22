@@ -64,5 +64,17 @@ namespace RendszerRepo.Controllers
             }
             return Ok(response);
         }
+
+        [HttpGet("GetReserve")]
+        public async Task<ActionResult<ServiceResponse<List<GetPartDto>>>> GetReserve() 
+        {
+            return Ok(await _partService.getReserves());
+        }
+
+        [HttpPost("AddReserve")]
+        public async Task<ActionResult<ServiceResponse<List<GetPartDto>>>> AddReserve(AddReserveDto newReserve) 
+        {
+            return Ok(await _partService.addReserves(newReserve));
+        }
     }
 }

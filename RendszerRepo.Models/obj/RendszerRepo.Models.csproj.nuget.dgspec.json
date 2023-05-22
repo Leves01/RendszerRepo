@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Rendszerfejl\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj": {}
+    "C:\\Users\\tarka\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj": {}
   },
   "projects": {
-    "C:\\Rendszerfejl\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj": {
+    "C:\\Users\\tarka\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Rendszerfejl\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
+        "projectUniqueName": "C:\\Users\\tarka\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
         "projectName": "RendszerRepo.Models",
-        "projectPath": "C:\\Rendszerfejl\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
-        "packagesPath": "C:\\Users\\Boros Donát\\.nuget\\packages\\",
-        "outputPath": "C:\\Rendszerfejl\\RendszerRepo\\RendszerRepo.Models\\obj\\",
+        "projectPath": "C:\\Users\\tarka\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
+        "packagesPath": "C:\\Users\\tarka\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tarka\\RendszerRepo\\RendszerRepo.Models\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Boros Donát\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tarka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -55,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
