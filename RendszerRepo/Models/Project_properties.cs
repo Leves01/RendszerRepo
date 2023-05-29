@@ -8,13 +8,15 @@ namespace RendszerRepo.Models
 {
     public class Project_properties
     {
+        [Key]
+        public int OwnId {get; set;}
         [Display(Name = "Projekt")]
         public int ProjectId { get; set; }
         [ForeignKey("ProjectId")] 
         public virtual Project Project { get; set; }
         [Display(Name = "AssignedWorker")]
-        public int assignedId {get; set;}
-        [ForeignKey("UserId")] 
+        public int userId{get; set;}
+        [ForeignKey("userId")] 
         public virtual User User { get; set; }
         [Display(Name = "Part")] 
         public int partId { get; set; }

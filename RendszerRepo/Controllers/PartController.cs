@@ -22,7 +22,7 @@ namespace RendszerRepo.Controllers
             return Ok(await _partService.GetAllParts());
         }
 
-        [HttpPost("AddPart"), Authorize(Roles = "WarehouseManager")]
+        [HttpPost("AddPart")]//, Authorize(Roles = "WarehouseManager")]
         public async Task<ActionResult<ServiceResponse<List<GetPartDto>>>> AddPart(AddPartDto newPart) {
             return Ok(await _partService.AddPart(newPart));
         }

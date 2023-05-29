@@ -34,3 +34,15 @@ C:\Users\tarka\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Mo
 C:\Users\tarka\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\refint\RendszerRepo.Models.dll
 C:\Users\tarka\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.pdb
 C:\Users\tarka\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\ref\RendszerRepo.Models.dll
+C:\Users\Admin\Documents\c#\RendszerRepo\RendszerRepo.Models\bin\Debug\net7.0\RendszerRepo.Models.deps.json
+C:\Users\Admin\Documents\c#\RendszerRepo\RendszerRepo.Models\bin\Debug\net7.0\RendszerRepo.Models.dll
+C:\Users\Admin\Documents\c#\RendszerRepo\RendszerRepo.Models\bin\Debug\net7.0\RendszerRepo.Models.pdb
+C:\Users\Admin\Documents\c#\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.csproj.AssemblyReference.cache
+C:\Users\Admin\Documents\c#\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Documents\c#\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.AssemblyInfoInputs.cache
+C:\Users\Admin\Documents\c#\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.AssemblyInfo.cs
+C:\Users\Admin\Documents\c#\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\c#\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.dll
+C:\Users\Admin\Documents\c#\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\refint\RendszerRepo.Models.dll
+C:\Users\Admin\Documents\c#\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\RendszerRepo.Models.pdb
+C:\Users\Admin\Documents\c#\RendszerRepo\RendszerRepo.Models\obj\Debug\net7.0\ref\RendszerRepo.Models.dll
