@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace RendszerRepo.Models
 {
-    [Keyless]
     public class Project_properties
     {
         [Display(Name = "Projekt")]
