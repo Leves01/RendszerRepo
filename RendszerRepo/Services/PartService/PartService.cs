@@ -152,7 +152,7 @@ namespace RendszerRepo.Services.PartService
         {
             var serviceResponse = new ServiceResponse<GetStoragesDto>();
             var dbStorage = await _context.Storages.ToListAsync();
-            var dbProjects = await _context.ProjectProperties.ToListAsync();
+            var dbProjects = await _context.Project.ToListAsync();
 
             try{
                 var storage = dbStorage.First(p => p.partId == selectedPartId);
