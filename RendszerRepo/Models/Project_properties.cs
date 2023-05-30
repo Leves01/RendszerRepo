@@ -15,7 +15,7 @@ namespace RendszerRepo.Models
         [ForeignKey("ProjectId")] 
         public virtual Project Project { get; set; }
         [Display(Name = "AssignedWorker")]
-        public int userId{get; set;}
+        public int userId{get; set;} = 1;
         [ForeignKey("userId")] 
         public virtual User User { get; set; }
         [Display(Name = "Part")] 

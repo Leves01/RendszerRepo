@@ -11,8 +11,8 @@ using RendszerRepo.Data;
 namespace RendszerRepo.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230529160913_Project_properties")]
-    partial class Project_properties
+    [Migration("20230530121957_All_Migs")]
+    partial class All_Migs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

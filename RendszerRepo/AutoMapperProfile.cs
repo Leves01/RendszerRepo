@@ -19,6 +19,8 @@ namespace RendszerRepo
             CreateMap<UpdatePartDto, Part>();
             CreateMap<DeletePartDto, Part>();
             CreateMap<UpdatePartPriceDto, Part>();
+            CreateMap<PartToProjectDto, Part>();
+            CreateMap<PartToProjectDto, Project_properties>();
 
             //Storage maps
             CreateMap<Storage, GetStoragesDto>();
@@ -30,6 +32,7 @@ namespace RendszerRepo
             //Project prop
             CreateMap<Project_properties, GetProject_propertiesDto>();
             CreateMap<AddProjectDto, Project_properties>();
+            
             
             //Project
             CreateMap<Project, GetPrDto>();

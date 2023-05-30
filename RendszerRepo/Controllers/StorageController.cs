@@ -16,7 +16,7 @@ namespace RendszerRepo.Controllers
             _storageService = storageService;
         }
 
-        [HttpGet("GetStorages"), Authorize(Roles = "WarehouseManager")]
+        [HttpGet("GetStorages")] // , Authorize(Roles = "WarehouseManager")
         public async Task<ActionResult<ServiceResponse<List<GetStoragesDto>>>> GetStorages() 
         {
             return Ok(await _storageService.GetStorages());
@@ -46,7 +46,7 @@ namespace RendszerRepo.Controllers
         //     return Ok(await _storageService.GetStorageByDrawer(drawer));
         // }
 
-        [HttpPost("AddStorage"), Authorize(Roles = "WarehouseManager")]
+        [HttpPost("AddStorage")] // , Authorize(Roles = "WarehouseManager")
         public async Task<ActionResult<ServiceResponse<List<GetStoragesDto>>>> AddStorage(AddStorageDto newStorage) {
             return Ok(await _storageService.AddStorage(newStorage));
         }

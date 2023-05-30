@@ -55,7 +55,7 @@ namespace RendszerRepo.Controllers
             return Ok(response);
         }
 
-        [HttpPost("PartToProject"), Authorize(Roles = "Technician")]
+        [HttpPost("PartToProject")]
         public async Task<ActionResult<ServiceResponse<List<GetPartDto>>>> PartToProject(PartToProjectDto newPartToProject) 
         {
             var response = await _partService.PartToProject(newPartToProject);

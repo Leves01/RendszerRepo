@@ -5,7 +5,7 @@
 namespace RendszerRepo.Migrations
 {
     /// <inheritdoc />
-    public partial class Project_properties : Migration
+    public partial class All_Migs : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

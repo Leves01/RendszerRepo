@@ -38,12 +38,12 @@ namespace RendszerRepo.Controllers
             return Ok(await _projectService.GetProjects());
         }
 
-        [HttpPost("ProjectStatusChange"), Authorize(Roles = "Technician")]
+        [HttpPut("ProjectStatusChange"), Authorize(Roles = "Technician")]
         public async Task<ActionResult<ServiceResponse<GetProject_propertiesDto>>> ProjectStatusChange(UpdateStatusDto newStatus) 
         {
             return Ok(await _projectService.ProjectStatusChange(newStatus));
         }
-         [HttpPost("Add Project Properties")]
+         [HttpPost("AddProjectProperties")]
         public async Task<ActionResult<ServiceResponse<GetProject_propertiesDto>>> ProjectStatusChange(AddProjectDto newProjectPr) 
         {
             return Ok(await _projectService.AddProject_properties(newProjectPr));

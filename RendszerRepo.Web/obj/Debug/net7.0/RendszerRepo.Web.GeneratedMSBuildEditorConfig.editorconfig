@@ -9,85 +9,85 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = RendszerRepo.Web
 build_property.RootNamespace = RendszerRepo.Web
-build_property.ProjectDir = C:\Users\Admin\Documents\c#\RendszerRepo\RendszerRepo.Web\
+build_property.ProjectDir = C:\Users\tarka\RendszerRepo\RendszerRepo.Web\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Admin\Documents\c#\RendszerRepo\RendszerRepo.Web
+build_property.MSBuildProjectDirectory = C:\Users\tarka\RendszerRepo\RendszerRepo.Web
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/App.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Pages/AddPart.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Pages/AddPart.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkUGFydC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Pages/AddProject.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Pages/AddProject.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkUHJvamVjdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Pages/AddStorage.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Pages/AddStorage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkU3RvcmFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Pages/Home.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Pages/Login.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Pages/Parts.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Pages/Parts.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Pages/Projects.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Pages/Projects.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Pages/Storage.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Pages/Storage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RvcmFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Pages/TParts.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Pages/TParts.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVFBhcnRzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Pages/UpdatePart.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Pages/UpdatePart.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXBkYXRlUGFydC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Pages/UpdateStatus.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Pages/UpdateStatus.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXBkYXRlU3RhdHVzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Pages/UpdateStorage.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Pages/UpdateStorage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXBkYXRlU3RvcmFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Pages/UpdateStorageMax.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Pages/UpdateStorageMax.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXBkYXRlU3RvcmFnZU1heC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Shared/LoginLogoutButton.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Shared/LoginLogoutButton.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luTG9nb3V0QnV0dG9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Shared/SurveyPrompt.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/_Imports.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Shared/MainLayout.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-t4doeq040f
 
-[C:/Users/Admin/Documents/c\#/RendszerRepo/RendszerRepo.Web/Shared/NavMenu.razor]
+[C:/Users/tarka/RendszerRepo/RendszerRepo.Web/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-o6o6z4xan9

@@ -121,24 +121,27 @@ namespace RendszerRepo.Services.PartService
         {
             var serviceResponse = new ServiceResponse<GetPartDto>();
             var dbParts = await _context.Parts.ToListAsync();
-            var dbPrProp = await _context.ProjectProperties.ToListAsync();
+            var dbProjects = await _context.Project.ToListAsync();
+            //var dbPrProp = await _context.ProjectProperties.ToListAsync();
 
             try {
                 var part = dbParts.First(p => p.partId == newPartToProject.partId);
-                var project = dbPrProp.First(u => (u.ProjectId == newPartToProject.ProjectId));
+                var project = dbProjects.First(u => (u.ProjectId == newPartToProject.ProjectId));
 
                 if(part is null) {
                     throw new Exception($"Part with Id '{newPartToProject.partId}' not found.");
                 }
                 if(project is null) {
                     throw new Exception($"Project with Id '{newPartToProject.ProjectId}' not found.");
-                }
+                }  
 
-                project.partId = newPartToProject.partId;
-                project.quantity = newPartToProject.quantity;
+                // project.partId = newPartToProject.partId;
+                // project.quantity = newPartToProject.quantity;
                 
-                serviceResponse.Data = _mapper.Map<GetPartDto>(project);
+                
                 await PartOutOfStorage(newPartToProject.ProjectId, newPartToProject.partId, newPartToProject.quantity);
+
+                serviceResponse.Data = _mapper.Map<GetPartDto>(project);
             } 
             catch(Exception ex) {
                 serviceResponse.Success = false;
@@ -158,7 +161,9 @@ namespace RendszerRepo.Services.PartService
                 var storage = dbStorage.First(p => p.partId == selectedPartId);
                 var projects = dbProjects.First(p => p.ProjectId == selectedProjectId);
                 if((storage.countOfParts-selectedQuantity)<0) {
-                    // throw new Exception($"Not enough parts.");
+                    
+                    // throw new Exception($"ifbe lép be");
+
                     var resDto = new AddReserveDto() 
                     {
                         projectId = selectedProjectId,
@@ -167,9 +172,23 @@ namespace RendszerRepo.Services.PartService
                     };
 
                     await addReserves(resDto);
+
+                    storage.countOfParts = 0;
                 }
                 else {
+
+                    // throw new Exception($"elsebe lép be");
+
                     storage.countOfParts-=selectedQuantity;
+
+                    var projectDto = new PartToProjectDto() 
+                    {
+                        ProjectId = selectedProjectId,
+                        partId = selectedPartId,
+                        quantity = selectedQuantity
+                    };
+
+                    _context.ProjectProperties.Add(_mapper.Map<Project_properties>(projectDto));
                 }
                     
                 serviceResponse.Data = _mapper.Map<GetStoragesDto>(storage);

@@ -124,8 +124,7 @@ namespace RendszerRepo.Services.ProjectService
             var addedProject = dbProject.FirstOrDefault(u => (u.ProjectId == newProjectPr.ProjectId));
 
             if(addedProject is not null) {
-                _context.ProjectProperties.Add(_mapper.Map<Project_properties>(newProjectPr));
-                
+                _context.ProjectProperties.Add(_mapper.Map<Project_properties>(newProjectPr));   
             }
             else {
                 throw new Exception($"'{newProjectPr.ProjectId}' does not exists");
