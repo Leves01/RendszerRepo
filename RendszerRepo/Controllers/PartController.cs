@@ -76,5 +76,17 @@ namespace RendszerRepo.Controllers
         {
             return Ok(await _partService.addReserves(newReserve));
         }
+
+        [HttpPut("UpdateReserve")]
+        public async Task<ActionResult<ServiceResponse<List<GetPartDto>>>> UpdateReserve(UpdateReserveDto newReserve) 
+        {
+            return Ok(await _partService.updateReserve(newReserve));
+        }
+
+        [HttpPost("FillReserves")]
+        public async Task<ActionResult<ServiceResponse<GetReserveDto>>> FillReserves(int reservedId, int partId, int projectId)
+        {
+            return Ok(await _partService.fillReserves(reservedId, partId, projectId));
+        } 
     }
 }

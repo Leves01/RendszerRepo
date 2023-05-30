@@ -122,7 +122,6 @@ namespace RendszerRepo.Services.PartService
             var serviceResponse = new ServiceResponse<GetPartDto>();
             var dbParts = await _context.Parts.ToListAsync();
             var dbProjects = await _context.Project.ToListAsync();
-            //var dbPrProp = await _context.ProjectProperties.ToListAsync();
 
             try {
                 var part = dbParts.First(p => p.partId == newPartToProject.partId);
@@ -134,12 +133,8 @@ namespace RendszerRepo.Services.PartService
                 if(project is null) {
                     throw new Exception($"Project with Id '{newPartToProject.ProjectId}' not found.");
                 }  
-
-                // project.partId = newPartToProject.partId;
-                // project.quantity = newPartToProject.quantity;
                 
-                
-                await PartOutOfStorage(newPartToProject.ProjectId, newPartToProject.partId, newPartToProject.quantity);
+                await PartOutOfStorage(newPartToProject.userId, newPartToProject.ProjectId, newPartToProject.partId, newPartToProject.quantity);
 
                 serviceResponse.Data = _mapper.Map<GetPartDto>(project);
             } 
@@ -151,7 +146,8 @@ namespace RendszerRepo.Services.PartService
             await _context.SaveChangesAsync();
             return serviceResponse;
         }
-        public async Task<ServiceResponse<GetStoragesDto>> PartOutOfStorage(int selectedProjectId, int selectedPartId, int selectedQuantity)
+
+        public async Task<ServiceResponse<GetStoragesDto>> PartOutOfStorage(int selectedUserId, int selectedProjectId, int selectedPartId, int selectedQuantity)
         {
             var serviceResponse = new ServiceResponse<GetStoragesDto>();
             var dbStorage = await _context.Storages.ToListAsync();
@@ -161,8 +157,6 @@ namespace RendszerRepo.Services.PartService
                 var storage = dbStorage.First(p => p.partId == selectedPartId);
                 var projects = dbProjects.First(p => p.ProjectId == selectedProjectId);
                 if((storage.countOfParts-selectedQuantity)<0) {
-                    
-                    // throw new Exception($"ifbe lép be");
 
                     var resDto = new AddReserveDto() 
                     {
@@ -177,12 +171,11 @@ namespace RendszerRepo.Services.PartService
                 }
                 else {
 
-                    // throw new Exception($"elsebe lép be");
-
                     storage.countOfParts-=selectedQuantity;
 
                     var projectDto = new PartToProjectDto() 
                     {
+                        userId = selectedUserId, //Donát itt majd frontedről légyszi kérd be a user idjét
                         ProjectId = selectedProjectId,
                         partId = selectedPartId,
                         quantity = selectedQuantity
@@ -217,6 +210,75 @@ namespace RendszerRepo.Services.PartService
 
             _context.Reserves.Add(_mapper.Map<reservedParts>(newReserve));
             
+            await _context.SaveChangesAsync();
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<GetReserveDto>> updateReserve(UpdateReserveDto updateReserve)
+        {
+            var serviceResponse = new ServiceResponse<GetReserveDto>();
+            var dbReserves = await _context.Reserves.ToListAsync();
+
+            try {
+                var reserve = dbReserves.FirstOrDefault(p => p.reservedPartsId == updateReserve.reservedPartsId);
+                if(reserve is null) {
+                    throw new Exception($"Reserve with Id '{updateReserve.reservedPartsId}' not found.");
+                }
+
+                reserve.neededAmount = updateReserve.neededAmount;
+            
+                serviceResponse.Data = _mapper.Map<GetReserveDto>(reserve);
+
+            } catch(Exception ex) {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+
+            await _context.SaveChangesAsync();
+            return serviceResponse;
+        }
+
+        //ha ez megvan hívva, akkor a storageből kiszedi megint a dolgokat és eltünteni a reservet ha elegendő
+        public async Task<ServiceResponse<GetStoragesDto>> fillReserves(int reservedId, int partId, int projectId) //ez itt amúgy megkapja a frontendből ha minden igaz
+        {
+            var serviceResponse = new ServiceResponse<GetStoragesDto>();
+            var dbReserve = await _context.Reserves.ToListAsync();
+            var dbStorage = await _context.Storages.ToListAsync();
+            var dbProjects = await _context.Project.ToListAsync();
+
+            try{
+                var reserve = dbReserve.First(p => p.reservedPartsId == reservedId);
+                var storage = dbStorage.First(p => p.partId == partId);
+                var projects = dbProjects.First(p => p.ProjectId == projectId);
+
+                if(reserve is null) {
+                    throw new Exception($"Reserve with Id '{reservedId}' not found.");
+                }
+
+                if(reserve.neededAmount <= storage.countOfParts) {
+                    storage.countOfParts -= reserve.neededAmount;
+
+                    _context.Remove(_mapper.Map<reservedParts>(reserve));
+                }
+                else {
+
+                    var updated = new UpdateReserveDto() 
+                    {
+                        reservedPartsId = reservedId,
+                        neededAmount = Math.Abs(storage.countOfParts-reserve.neededAmount)
+                    };
+
+                    await updateReserve(updated);
+
+                    storage.countOfParts = 0;
+                }
+
+            }
+            catch(Exception ex) {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+
             await _context.SaveChangesAsync();
             return serviceResponse;
         }
