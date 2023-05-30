@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tarka\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj": {}
+    "C:\\Users\\markb\\Downloads\\Rendszerfejlesztés\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tarka\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj": {
+    "C:\\Users\\markb\\Downloads\\Rendszerfejlesztés\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tarka\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
+        "projectUniqueName": "C:\\Users\\markb\\Downloads\\Rendszerfejlesztés\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
         "projectName": "RendszerRepo.Models",
-        "projectPath": "C:\\Users\\tarka\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
-        "packagesPath": "C:\\Users\\tarka\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tarka\\RendszerRepo\\RendszerRepo.Models\\obj\\",
+        "projectPath": "C:\\Users\\markb\\Downloads\\Rendszerfejlesztés\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
+        "packagesPath": "C:\\Users\\markb\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\markb\\Downloads\\Rendszerfejlesztés\\RendszerRepo\\RendszerRepo.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\tarka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\markb\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

@@ -71,21 +71,33 @@ namespace RendszerRepo.Services.ProjectService
             return serviceResponse;   
         }
 
-       /*public async Task<ServiceResponse<GetProjectDto>> PriceCalculation(int projektid) 
+       public async Task<ServiceResponse<GetProject_propertiesDto>> PriceCalculation(int projektid) 
         {
-            var serviceResponse = new ServiceResponse<GetProjectDto>();
+            var serviceResponse = new ServiceResponse<GetProject_propertiesDto>();
             var dbProjects = await _context.Project.ToListAsync();
             var dbParts = await _context.Parts.ToListAsync();
-            
+            var dbProjecProperties = await _context.ProjectProperties.ToListAsync();
+            var dbReserved = await _context.Reserves.ToListAsync();
+
             try{
                 var selectedProject = dbProjects.FirstOrDefault(u => (u.ProjectId == projektid));
+                var selectedPP = dbProjecProperties.FirstOrDefault(u => (u.ProjectId == projektid));
+                var selectedPart = dbParts.FirstOrDefault(u => (u.partId == selectedPP.partId));
+                var selectedReserved = dbReserved.FirstOrDefault(u => (u.projectId==projektid));
                 if(selectedProject is null)
                 {
                     throw new Exception($"Project with Id '{projektid}' not found.");
                 }
-                
-                
-                serviceResponse.Data = _mapper.Map<GetProjectDto>(selectedProject);
+                if(selectedReserved is null)
+                {
+                    selectedPP.combinedPrice=selectedPP.workPrice*selectedPP.workTime+selectedPart.price*selectedPP.quantity;
+                }
+                else
+                {
+                    throw new Exception($"Not all parts available for project with id: '{projektid}'.");
+                }
+                  
+                serviceResponse.Data = _mapper.Map<GetProject_propertiesDto>(selectedProject);
             } catch(Exception ex) {
                 
                 serviceResponse.Success = false;
@@ -93,7 +105,7 @@ namespace RendszerRepo.Services.ProjectService
             }
 
             return serviceResponse;
-        }*/
+        }
 
         public async Task<ServiceResponse<GetProject_propertiesDto>> ProjectStatusChange(UpdateStatusDto newStatus) 
         {
