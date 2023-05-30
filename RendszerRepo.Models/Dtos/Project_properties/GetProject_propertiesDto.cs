@@ -12,16 +12,8 @@ namespace RendszerRepo.Dtos.Project_properties
     public class GetProject_propertiesDto
     {
         public int ProjectId { get; set; }
-        [ForeignKey("ProjectId")] 
-        public virtual GetProject_propertiesDto? Project_p { get; set; }
-        [Display(Name = "AssignedWorker")]
         public int userId {get; set;}
-        [ForeignKey("userId")] 
-        public virtual GetUserDto? User { get; set; }
-        [Display(Name = "Part")] 
         public int partId { get; set; }
-        [ForeignKey("partId")] 
-        public virtual GetPartDto? Parts { get; set; }
         public int quantity {get; set;}
         public int combinedPrice {get; set;}
     }

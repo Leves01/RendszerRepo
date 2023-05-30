@@ -12,10 +12,7 @@ namespace RendszerRepo.Dtos.Project
     {
        
         public int ProjectId { get; set; }
-        [Display(Name = "Part")] 
         public int partId { get; set; }
-        [ForeignKey("partId")] 
-        public virtual GetPartDto? Parts { get; set; }
         public int quantity { get; set; }
         public int combinedPrice { get; set; }
         public int workTime { get; set;}

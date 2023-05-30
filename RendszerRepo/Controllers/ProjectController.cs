@@ -16,13 +16,15 @@ namespace RendszerRepo.Controllers
             _projectService = projectService;
         }
 
-        [HttpPut("AddWorkTimeAndPrice"), Authorize(Roles = "Technician")]
+        [HttpPut("AddWorkTimeAndPrice")] //, Authorize(Roles = "Technician")
         public async Task<ActionResult<ServiceResponse<List<GetProjectDto>>>> AddWorkTimeAndPrice(int projektid, int time, int price) 
         {
             var response = await _projectService.AddWorkTimeAndPrice(projektid, time, price);
-                return NotFound(response);
+    
             if(response.Data is null) {
+                return NotFound(response);
             }
+            
             return Ok(response);
         }
 
@@ -36,6 +38,12 @@ namespace RendszerRepo.Controllers
         public async Task<ActionResult<ServiceResponse<List<GetProject_propertiesDto>>>> GetProject() 
         {
             return Ok(await _projectService.GetProjects());
+        }
+
+        [HttpPut("PriceCalculation")] //, Authorize(Roles = "Technician")
+        public async Task<ActionResult<ServiceResponse<GetProject_propertiesDto>>> PriceCalculation(int id) 
+        {
+            return Ok(await _projectService.PriceCalculation(id));
         }
 
         [HttpPut("ProjectStatusChange"), Authorize(Roles = "Technician")]
