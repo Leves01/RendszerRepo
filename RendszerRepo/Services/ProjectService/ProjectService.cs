@@ -110,10 +110,30 @@ namespace RendszerRepo.Services.ProjectService
                 serviceResponse.Data = _mapper.Map<GetProject_propertiesDto>(selectedProjectProperties);
             } catch(Exception ex) {
                 
+                
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.Message;
             }
             return serviceResponse;
+        }
+        public async Task<ServiceResponse<List<GetProject_propertiesDto>>> AddProject_properties(AddProjectDto newProjectPr)
+        {
+            var serviceResponse = new ServiceResponse<List<GetProject_propertiesDto>>();
+            var dbProject = await _context.Project.ToListAsync();
+
+            var addedProject = dbProject.FirstOrDefault(u => (u.ProjectId == newProjectPr.ProjectId));
+
+            if(addedProject is not null) {
+                _context.ProjectProperties.Add(_mapper.Map<Project_properties>(newProjectPr));
+                
+            }
+            else {
+                throw new Exception($"'{newProjectPr.ProjectId}' does not exists");
+            }
+            
+            await _context.SaveChangesAsync();
+            return serviceResponse;
+            
         }
     }
 }

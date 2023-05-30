@@ -43,5 +43,10 @@ namespace RendszerRepo.Controllers
         {
             return Ok(await _projectService.ProjectStatusChange(newStatus));
         }
+         [HttpPost("Add Project Properties")]
+        public async Task<ActionResult<ServiceResponse<GetProject_propertiesDto>>> ProjectStatusChange(AddProjectDto newProjectPr) 
+        {
+            return Ok(await _projectService.AddProject_properties(newProjectPr));
+        }
     }
 }

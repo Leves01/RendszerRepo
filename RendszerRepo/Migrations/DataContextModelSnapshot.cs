@@ -75,13 +75,13 @@ namespace RendszerRepo.Migrations
 
             modelBuilder.Entity("RendszerRepo.Models.Project_properties", b =>
                 {
+                    b.Property<int>("OwnId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OwnId"));
+
                     b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("assignedId")
                         .HasColumnType("int");
 
                     b.Property<int>("combinedPrice")
@@ -93,17 +93,22 @@ namespace RendszerRepo.Migrations
                     b.Property<int>("quantity")
                         .HasColumnType("int");
 
+                    b.Property<int>("userId")
+                        .HasColumnType("int");
+
                     b.Property<int>("workPrice")
                         .HasColumnType("int");
 
                     b.Property<int>("workTime")
                         .HasColumnType("int");
 
+                    b.HasKey("OwnId");
+
                     b.HasIndex("ProjectId");
 
-                    b.HasIndex("UserId");
-
                     b.HasIndex("partId");
+
+                    b.HasIndex("userId");
 
                     b.ToTable("ProjectProperties");
                 });
@@ -166,6 +171,32 @@ namespace RendszerRepo.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("RendszerRepo.Models.reservedParts", b =>
+                {
+                    b.Property<int>("reservedPartsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("reservedPartsId"));
+
+                    b.Property<int>("neededAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("partId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("projectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("reservedPartsId");
+
+                    b.HasIndex("partId");
+
+                    b.HasIndex("projectId");
+
+                    b.ToTable("Reserves");
+                });
+
             modelBuilder.Entity("RendszerRepo.Models.Project_properties", b =>
                 {
                     b.HasOne("RendszerRepo.Models.Project", "Project")
@@ -174,15 +205,15 @@ namespace RendszerRepo.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RendszerRepo.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("RendszerRepo.Models.Part", "Part")
                         .WithMany()
                         .HasForeignKey("partId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RendszerRepo.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -202,6 +233,25 @@ namespace RendszerRepo.Migrations
                         .IsRequired();
 
                     b.Navigation("Parts");
+                });
+
+            modelBuilder.Entity("RendszerRepo.Models.reservedParts", b =>
+                {
+                    b.HasOne("RendszerRepo.Models.Part", "part")
+                        .WithMany()
+                        .HasForeignKey("partId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RendszerRepo.Models.Project", "project")
+                        .WithMany()
+                        .HasForeignKey("projectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("part");
+
+                    b.Navigation("project");
                 });
 #pragma warning restore 612, 618
         }
