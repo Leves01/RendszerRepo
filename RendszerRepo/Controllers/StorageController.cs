@@ -51,7 +51,7 @@ namespace RendszerRepo.Controllers
             return Ok(await _storageService.AddStorage(newStorage));
         }
 
-        [HttpPut("UpdateStorage"), Authorize(Roles = "WarehouseManager")]
+        [HttpPut("UpdateStorage")] // , Authorize(Roles = "WarehouseManager")
         public async Task<ActionResult<ServiceResponse<List<GetStoragesDto>>>> UpdatePart(UpdateStoragesDto updatedStorage) {
             var response = await _storageService.UpdateStorage(updatedStorage);
             if(response.Data is null) {

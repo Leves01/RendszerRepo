@@ -15,7 +15,7 @@ else
         <input type="number" class="form-control" id="partId" @bind="UpdatedStorage.partId">
     </div>
 
-    <div class="form-group">
+    @* <div class="form-group">
         <label for="row">Row</label>
         <input type="number" class="form-control" id="row" @bind="UpdatedStorage.row">
     </div>
@@ -28,7 +28,7 @@ else
     <div class="form-group">
         <label for="drawer">Drawer</label>
         <input type="number" class="form-control" id="drawer" @bind="UpdatedStorage.drawer">
-    </div>
+    </div> *@
 
     <div class="form-group">
         <label for="countofparts">Count of Parts</label>
@@ -54,9 +54,9 @@ else
         Storage = Storages.Data.FirstOrDefault(p => p.storageId == storageId);
         UpdatedStorage.storageId = Storage.storageId;
         UpdatedStorage.partId = Storage.partId;
-        UpdatedStorage.row = Storage.row;
+        @* UpdatedStorage.row = Storage.row;
         UpdatedStorage.column = Storage.column;
-        UpdatedStorage.drawer = Storage.drawer;
+        UpdatedStorage.drawer = Storage.drawer; *@
         UpdatedStorage.countOfParts = Storage.countOfParts;
         UpdatedStorage.max = Storage.max;
     }
@@ -71,9 +71,9 @@ else
                 {
                     storageId = UpdatedStorage.storageId,
                     partId = UpdatedStorage.partId,
-                    row = UpdatedStorage.row,
+                    @* row = UpdatedStorage.row,
                     column = UpdatedStorage.column,
-                    drawer = UpdatedStorage.drawer,
+                    drawer = UpdatedStorage.drawer, *@
                     countOfParts = UpdatedStorage.countOfParts,
                     max = UpdatedStorage.max
                 });

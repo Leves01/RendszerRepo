@@ -12,10 +12,7 @@ namespace RendszerRepo.Models.Dtos.Reserves
     {
         public int reservedPartsId { get; set; }
         public int partId { get; set; }
-        [ForeignKey("partId")] 
-        public virtual GetPartDto? part { get; set; }
         public int projectId { get; set; }
-        public virtual GetProjectDto? project { get; set; }
         public int neededAmount {get; set;}
     }
 }

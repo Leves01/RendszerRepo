@@ -36,33 +36,6 @@ namespace RendszerRepo.Services.StorageService
             return serviceResponse;
         }
 
-        // public async Task<ServiceResponse<List<Storage>>> GetStorageByRow(int row)
-        // {
-        //     var serviceResponse = new ServiceResponse<List<Storage>>();
-        //     var dbStorage = await _context.Storages.ToListAsync();
-        //     var stored = dbStorage.FindAll(s => s.row == row);
-        //     serviceResponse.Data = stored;
-        //     return serviceResponse;
-        // }
-
-        // public async Task<ServiceResponse<List<Storage>>> GetStorageByColumn(int column)
-        // {
-        //     var serviceResponse = new ServiceResponse<List<Storage>>();
-        //     var dbStorage = await _context.Storages.ToListAsync();
-        //     var stored = dbStorage.FindAll(s => s.column == column);
-        //     serviceResponse.Data = stored;
-        //     return serviceResponse;
-        // }
-
-        // public async Task<ServiceResponse<List<Storage>>> GetStorageByDrawer(int drawer)
-        // {
-        //     var serviceResponse = new ServiceResponse<List<Storage>>();
-        //     var dbStorage = await _context.Storages.ToListAsync();
-        //     var stored = dbStorage.FindAll(s => s.drawer == drawer);
-        //     serviceResponse.Data = stored;
-        //     return serviceResponse;
-        // }
-
         //B5 - Beérkező anyagok felvétele a rendszerben, a tárolás, a rekesz meghatározása
         public async Task<ServiceResponse<List<GetStoragesDto>>> AddStorage(AddStorageDto newStorage)
         {
@@ -98,10 +71,8 @@ namespace RendszerRepo.Services.StorageService
 
                 //storageId, partId, row, column, drawer, countOfParts
                 stored.partId = updatedStorage.partId;
-                stored.row = updatedStorage.row;
-                stored.column = updatedStorage.column;
-                stored.drawer = updatedStorage.drawer;
                 stored.countOfParts = updatedStorage.countOfParts;
+                stored.max = updatedStorage.max;
             
                 serviceResponse.Data = _mapper.Map<GetStoragesDto>(stored);
             } catch(Exception ex) {
@@ -126,8 +97,6 @@ namespace RendszerRepo.Services.StorageService
 
                 _context.Storages.Remove(stored);
 
-                
-            
                 serviceResponse.Data = dbStorage.Select(s => _mapper.Map<GetStoragesDto>(s)).ToList();
                 
             } catch(Exception ex) {

@@ -68,9 +68,10 @@ namespace RendszerRepo.Web.Pages
             {
                 storageId = storage.storageId,
                 partId = storage.partId,
-                row = storage.row,
-                column = storage.column,
-                drawer = storage.drawer,
+                //ezt itt nem kell updatelni
+                // row = storage.row,
+                // column = storage.column,
+                // drawer = storage.drawer,
                 countOfParts = storage.countOfParts,
                 max = storage.max
             });

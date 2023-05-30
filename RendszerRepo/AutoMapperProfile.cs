@@ -33,7 +33,6 @@ namespace RendszerRepo
             CreateMap<Project_properties, GetProject_propertiesDto>();
             CreateMap<AddProjectDto, Project_properties>();
             
-            
             //Project
             CreateMap<Project, GetPrDto>();
             CreateMap<AddPrDto, Project>();
