@@ -18,10 +18,10 @@ global using AutoMapper;
 global using RendszerRepo.Services.UserService;
 global using RendszerRepo.Services.PartService;
 global using RendszerRepo.Services.ProjectService;
+global using RendszerRepo.Services.StorageService;
 
 global using Microsoft.EntityFrameworkCore;
 global using RendszerRepo.Data;
-global using RendszerRepo.Services.StorageService;
 
 //Login and Authorize
 global using System.Security.Claims;

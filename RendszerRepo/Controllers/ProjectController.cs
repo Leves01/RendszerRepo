@@ -35,12 +35,18 @@ namespace RendszerRepo.Controllers
         }
 
         [HttpGet("GetProject"), Authorize(Roles = "Technician")]
-        public async Task<ActionResult<ServiceResponse<List<GetProject_propertiesDto>>>> GetProject() 
+        public async Task<ActionResult<ServiceResponse<List<GetPrDto>>>> GetProject() 
         {
             return Ok(await _projectService.GetProjects());
         }
 
-        [HttpPut("PriceCalculation")] //, Authorize(Roles = "Technician")
+        [HttpGet("GetProjectProperties"), Authorize(Roles = "Technician")]
+        public async Task<ActionResult<ServiceResponse<List<GetProject_propertiesDto>>>> GetProjectProperties() 
+        {
+            return Ok(await _projectService.getProjectProperties());
+        }
+
+        [HttpPut("PriceCalculation"), Authorize(Roles = "Technician")]
         public async Task<ActionResult<ServiceResponse<GetProject_propertiesDto>>> PriceCalculation(int id) 
         {
             return Ok(await _projectService.PriceCalculation(id));
