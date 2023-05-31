@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using RendszerRepo.Dtos.Part;
 using RendszerRepo.Models;
+using RendszerRepo.Models.Dtos.Reserves;
 using RendszerRepo.Web.Services.Contracts;
 using System.Data;
 

@@ -1,0 +1,69 @@
+﻿@page "/addparttp/{partId:int}"
+@inherits PartsBase
+<h3>Add Part To Project</h3>
+
+    <div class="form-group">
+        <label for="partId">User Id</label>
+        <input type="text" class="form-control" id="userId" @bind="PartToProject.userId">
+    </div>
+
+    <div class="form-group">
+        <label for="partId">Part Id</label>
+        <input type="text" class="form-control" id="partId" @bind="PartToProject.partId">
+    </div>
+
+    <div class="form-group">
+        <label for="projectId">Project Id</label>
+        <input type="text" class="form-control" id="projectId" @bind="PartToProject.ProjectId">
+    </div>
+
+    <div class="form-group">
+        <label for="Quantity">Quantity</label>
+        <input type="number" class="form-control" id="quantity" @bind="PartToProject.quantity">
+    </div>
+
+    <div>
+        <button class="btn btn-primary" style="margin-top: 20px;" @onclick="@AddPart">Add Part</button>
+    </div>
+
+@if (PartAdded)
+{
+    <div class="alert alert-success" role="alert" style="margin-top: 40px;">
+        Part successfully added!
+    </div>
+}
+
+@code {
+        [Parameter]
+        public int partId { get; set; }
+
+    private GetPartDto Part { get; set; }
+
+    private PartToProjectDto PartToProject { get; set; } = new PartToProjectDto();
+
+    private bool PartAdded { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        PartToProject.partId = partId;
+
+        await base.OnInitializedAsync();
+    }
+
+    protected async Task AddPart()
+    {
+        var response = await FEPartService.PartToProject(PartToProject);
+
+        if (response.Success)
+        {
+            PartAdded = true;
+            Console.WriteLine("Part added to project");
+        }
+        else
+        {
+            ShowErrorMessage = true;
+            ErrorMessage = response.Message;
+        }
+    }
+
+}

@@ -84,9 +84,9 @@ namespace RendszerRepo.Controllers
         // }
 
         [HttpPost("FillReserves")]
-        public async Task<ActionResult<ServiceResponse<GetReserveDto>>> FillReserves(int reservedId, int partId, int projectId)
+        public async Task<ActionResult<ServiceResponse<GetReserveDto>>> FillReserves(FillReservesDto fillReservesDto)
         {
-            return Ok(await _partService.fillReserves(reservedId, partId, projectId));
+            return Ok(await _partService.fillReserves(fillReservesDto));
         } 
     }
 }
