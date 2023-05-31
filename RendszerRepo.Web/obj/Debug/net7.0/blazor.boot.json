@@ -35,6 +35,7 @@
       "Newtonsoft.Json.dll": "sha256-IsZJ91\/OW+fHzNqIgEc7Y072ns8z9dGritiSyvR9Wgc=",
       "System.IO.Pipelines.dll": "sha256-P\/MqD0fCBd5bgTM16JC1QC\/Zz7s+CwViyzmDFkBG4\/c=",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "Microsoft.CSharp.dll": "sha256-aAP8Z\/Kd1yg8nt7wXedk+i2Oy2hi1b2lG2er86epgZY=",
       "Microsoft.VisualBasic.Core.dll": "sha256-xXmnvheCZXUbf1gDmsByeCpU1oV4BSXUReiP5rFfkhE=",
       "Microsoft.VisualBasic.dll": "sha256-xCirZ3P8Dp\/q+L+3T447Ab3lVGw+mgiBuvxTwi4GetQ=",
@@ -206,6 +207,8 @@
       "RendszerRepo.Models.dll": "sha256-nUUu49Ajs3ZRwgST4mSmY1128x7utfP5dfJ8DpOrXZU=",
       "RendszerRepo.Web.dll": "sha256-m8nBYctFuophwCV1YcWkkvJyP2\/b9f5lR+0JY+jn1As="
 =======
+=======
+>>>>>>> Stashed changes
       "Microsoft.CSharp.dll": "sha256-6Y1rN8knL1K5x5lsZ2tEVDND2h4LtDSuVgCg1N8ghkA=",
       "Microsoft.VisualBasic.Core.dll": "sha256-LRJ4hN7opopr3bsogxcz7uyVjh4bNZOdMbVbIIQ9z+8=",
       "Microsoft.VisualBasic.dll": "sha256-xkUVMleH\/xQU+9disGUzBr7fT6ckmem5\/CMscxtghD8=",
@@ -376,6 +379,9 @@
       "System.Private.CoreLib.dll": "sha256-EVS7zPxPV\/41g2mzPwdXtwiigWxI\/SeAHme1IgyD6tc=",
       "RendszerRepo.Models.dll": "sha256-jag\/9tlxZwhcVxreXcbtGCJz82s4REhgO\/+km69xTaM=",
       "RendszerRepo.Web.dll": "sha256-EQRUw28Js4nWsIkjF5+Z9qKLPQrHhPGQ+CNeRMUmqjA="
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     },
     "extensions": null,
@@ -383,8 +389,13 @@
     "libraryInitializers": null,
     "pdb": {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "RendszerRepo.Models.pdb": "sha256-2TfbdPPsO89Jbr9ddcLyiWwqhev8uB4oiKkcmKgEe+s=",
       "RendszerRepo.Web.pdb": "sha256-dHe+BGgh2BlQ\/lUM8qfT\/C46f6iFYJJ+KpP2BnIw8Xc="
+=======
+      "RendszerRepo.Models.pdb": "sha256-X0BxZe4TCScxmZUizjC7WgzHlNyvlH0LSFVQGoB7cLE=",
+      "RendszerRepo.Web.pdb": "sha256-cQRcatK8SNMQeZf7yt4z8j7WyKYJLgwxFRsTxoZo1fU="
+>>>>>>> Stashed changes
 =======
       "RendszerRepo.Models.pdb": "sha256-X0BxZe4TCScxmZUizjC7WgzHlNyvlH0LSFVQGoB7cLE=",
       "RendszerRepo.Web.pdb": "sha256-cQRcatK8SNMQeZf7yt4z8j7WyKYJLgwxFRsTxoZo1fU="
