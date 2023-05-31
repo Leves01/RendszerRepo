@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using RendszerRepo.Models.Dtos.Project;
 
 namespace RendszerRepo.Services.PartService
 {
@@ -133,7 +133,9 @@ namespace RendszerRepo.Services.PartService
                 if(project is null) {
                     throw new Exception($"Project with Id '{newPartToProject.ProjectId}' not found.");
                 }  
-                
+
+                project.Status = "Draft";
+
                 await PartOutOfStorage(newPartToProject.userId, newPartToProject.ProjectId, newPartToProject.partId, newPartToProject.quantity);
 
                 serviceResponse.Data = _mapper.Map<GetPartDto>(project);

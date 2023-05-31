@@ -202,25 +202,15 @@
       "mscorlib.dll": "sha256-3H8zsATEgIcRSRoZhWYtgfKT5VniJvhcYxLruf8koAY=",
       "netstandard.dll": "sha256-bbx+pnJNmXZyPqAgESJnWLJsbfuAl0UflLCdl9slPYE=",
       "System.Private.CoreLib.dll": "sha256-pUYF+nr8SzfBMCLc3FM2i\/YivXJlzztdLin+aUsoqP0=",
-<<<<<<< HEAD
-      "RendszerRepo.Models.dll": "sha256-DS5f+2aFut468mAOL1Q+bAATidUQ6FZORZe+tdZNrnE=",
-      "RendszerRepo.Web.dll": "sha256-9EYLCwGEZgb54sgD0cG2myNTV4DPP5KfKySo20\/ufnM="
-=======
-      "RendszerRepo.Models.dll": "sha256-u5NHJzLyloLZDk1CBzKl7wp82jbgp3SxbaKo7w57huY=",
-      "RendszerRepo.Web.dll": "sha256-QXH2WXxcMOusuNskaRIfDSaclIXHcj3x4f28L7jAruc="
->>>>>>> Head2
+      "RendszerRepo.Models.dll": "sha256-nUUu49Ajs3ZRwgST4mSmY1128x7utfP5dfJ8DpOrXZU=",
+      "RendszerRepo.Web.dll": "sha256-m8nBYctFuophwCV1YcWkkvJyP2\/b9f5lR+0JY+jn1As="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-<<<<<<< HEAD
-      "RendszerRepo.Models.pdb": "sha256-BENgZ\/2K37cOFM4mZDQ3+8IxA5kFX35738y2ucnJADs=",
-      "RendszerRepo.Web.pdb": "sha256-HYu7cEfKRJHa4kLA23uRjQmvIvoAAuUxAxgGLB1XqOQ="
-=======
-      "RendszerRepo.Models.pdb": "sha256-ARk84ra4XGC4Ui88s2y9BfNWPMbbbHStBd0KRlGkL6o=",
-      "RendszerRepo.Web.pdb": "sha256-rSUqpLBwcgTzGfNDa\/4nQcgwd9Bl0JpLkI2RomsFjb4="
->>>>>>> Head2
+      "RendszerRepo.Models.pdb": "sha256-2TfbdPPsO89Jbr9ddcLyiWwqhev8uB4oiKkcmKgEe+s=",
+      "RendszerRepo.Web.pdb": "sha256-dHe+BGgh2BlQ\/lUM8qfT\/C46f6iFYJJ+KpP2BnIw8Xc="
     },
     "runtime": {
       "dotnet.7.0.4.c1be666iu0.js": "sha256-3l+4ZYRWpGMbBjNqeIqO9T\/65euaOzIvRlVX2SySvFQ=",

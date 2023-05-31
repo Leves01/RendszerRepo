@@ -51,15 +51,21 @@ namespace RendszerRepo.Services.ProjectService
         {
             var serviceResponse = new ServiceResponse<GetProjectDto>();
             var dbProjectProperties = await _context.ProjectProperties.ToListAsync();
+            var dbProject = await _context.Project.ToListAsync();
 
             try{
                 var selectedProject = dbProjectProperties.FirstOrDefault(u => (u.ProjectId == projektid));
+                var project = dbProject.First(u => (u.ProjectId == projektid));
+
                 if(selectedProject is null)
                 {
                     throw new Exception($"Project with Id '{projektid}' not found.");
                 }
+
                 selectedProject.workPrice = price;
                 selectedProject.workTime = time;
+                project.Status = "Wait";
+
                 serviceResponse.Data = _mapper.Map<GetProjectDto>(selectedProject);
             } catch(Exception ex) {
                 
@@ -71,32 +77,60 @@ namespace RendszerRepo.Services.ProjectService
             return serviceResponse;   
         }
 
+        public async Task<ServiceResponse<GetProjectDto>> setStatusInProgress(UpdateStatusDto updated) 
+        {
+            var serviceResponse = new ServiceResponse<GetProjectDto>();
+            var dbProjects = await _context.Project.ToListAsync();
+            var dbReserved = await _context.Reserves.ToListAsync();
+
+            try {
+
+                var project = dbProjects.FirstOrDefault(u => (u.ProjectId == updated.projectId));
+                var selectedReserved = dbReserved.FirstOrDefault(u => (u.projectId == updated.projectId));
+
+                if(selectedReserved is null)
+                {
+                    project.Status = "InProgress";
+                }
+                else
+                {
+                    throw new Exception($"Not all parts available for project with id: '{updated.projectId}'.");
+                }
+                
+            } catch(Exception ex) {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+
+            await _context.SaveChangesAsync();
+            return serviceResponse;
+        }
+
        public async Task<ServiceResponse<GetProject_propertiesDto>> PriceCalculation(int projektid) 
         {
             var serviceResponse = new ServiceResponse<GetProject_propertiesDto>();
-            // var dbProjects = await _context.Project.ToListAsync();
+            var dbProjects = await _context.Project.ToListAsync();
             var dbParts = await _context.Parts.ToListAsync();
             var dbProjecProperties = await _context.ProjectProperties.ToListAsync();
             var dbReserved = await _context.Reserves.ToListAsync();
+            
 
             try{
-                // var selectedProject = dbProjects.FirstOrDefault(u => (u.ProjectId == projektid));
+                var selectedProject = dbProjects.FirstOrDefault(u => (u.ProjectId == projektid));
                 var selectedPP = dbProjecProperties.FirstOrDefault(u => (u.ProjectId == projektid));
                 var selectedPart = dbParts.FirstOrDefault(u => (u.partId == selectedPP.partId));
                 var selectedReserved = dbReserved.FirstOrDefault(u => (u.projectId==projektid));
-                // if(selectedProject is null)
-                // {
-                //     throw new Exception($"Project with Id '{projektid}' not found.");
-                // }
+
                 if(selectedReserved is null)
                 {
                     selectedPP.combinedPrice = selectedPP.workPrice * selectedPP.workTime + selectedPart.price * selectedPP.quantity;
+                    selectedProject.Status = "Scheduled";
                 }
                 else
                 {
                     throw new Exception($"Not all parts available for project with id: '{projektid}'.");
                 }
-                  
+                
                 serviceResponse.Data = _mapper.Map<GetProject_propertiesDto>(selectedPP);
 
             } catch(Exception ex) {
@@ -109,10 +143,11 @@ namespace RendszerRepo.Services.ProjectService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<GetProject_propertiesDto>> ProjectStatusChange(UpdateStatusDto newStatus) 
+        public async Task<ServiceResponse<GetPrDto>> ProjectStatusChange(UpdateStatusDto newStatus) 
         {
-            var serviceResponse = new ServiceResponse<GetProject_propertiesDto>();
+            var serviceResponse = new ServiceResponse<GetPrDto>();
             var dbProjects = await _context.Project.ToListAsync();
+
             try{
                 var selectedProjectProperties = dbProjects .FirstOrDefault(u => (u.ProjectId == newStatus.projectId));
                 if(selectedProjectProperties  is null)
@@ -121,15 +156,18 @@ namespace RendszerRepo.Services.ProjectService
                 }
                 
                 selectedProjectProperties.Status = newStatus.Status;
-                serviceResponse.Data = _mapper.Map<GetProject_propertiesDto>(selectedProjectProperties);
+                serviceResponse.Data = _mapper.Map<GetPrDto>(selectedProjectProperties);
             } catch(Exception ex) {
                 
                 
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.Message;
             }
+
+            await _context.SaveChangesAsync();
             return serviceResponse;
         }
+
         public async Task<ServiceResponse<List<GetProject_propertiesDto>>> AddProject_properties(AddProjectDto newProjectPr)
         {
             var serviceResponse = new ServiceResponse<List<GetProject_propertiesDto>>();
@@ -146,7 +184,6 @@ namespace RendszerRepo.Services.ProjectService
             
             await _context.SaveChangesAsync();
             return serviceResponse;
-            
         }
     }
 }

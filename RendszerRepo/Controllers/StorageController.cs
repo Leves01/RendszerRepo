@@ -27,25 +27,7 @@ namespace RendszerRepo.Controllers
         {
             return Ok(await _storageService.GetStorageByPartId(id));
         }
-
-        // [HttpGet("GetStorageByRow")]
-        // public async Task<ActionResult<ServiceResponse<List<Storage>>>> GetStorageByRow(int row) 
-        // {
-        //     return Ok(await _storageService.GetStorageByRow(row));
-        // }
-
-        // [HttpGet("GetStorageByColumn")]
-        // public async Task<ActionResult<ServiceResponse<List<Storage>>>> GetStorageByColumn(int column) 
-        // {
-        //     return Ok(await _storageService.GetStorageByColumn(column));
-        // }
-
-        // [HttpGet("GetStorageByDrawer")]
-        // public async Task<ActionResult<ServiceResponse<List<Storage>>>> GetStorageByDrawer(int drawer) 
-        // {
-        //     return Ok(await _storageService.GetStorageByDrawer(drawer));
-        // }
-
+        
         [HttpPost("AddStorage")] // , Authorize(Roles = "WarehouseManager")
         public async Task<ActionResult<ServiceResponse<List<GetStoragesDto>>>> AddStorage(AddStorageDto newStorage) {
             return Ok(await _storageService.AddStorage(newStorage));
