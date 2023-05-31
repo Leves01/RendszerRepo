@@ -85,34 +85,30 @@ namespace RendszerRepo.Services.ProjectService
             return serviceResponse;   
         }
 
-        public async Task<ServiceResponse<GetProjectDto>> setStatusInProgress(UpdateStatusDto updated) 
-        {
-            var serviceResponse = new ServiceResponse<GetProjectDto>();
-            var dbProjects = await _context.Project.ToListAsync();
-            var dbReserved = await _context.Reserves.ToListAsync();
+        // public async Task<ServiceResponse<GetProjectDto>> setStatusInProgress(UpdateStatusDto updated) 
+        // {
+        //     var serviceResponse = new ServiceResponse<GetProjectDto>();
+        //     var dbProjects = await _context.Project.ToListAsync();
+        //     var dbReserved = await _context.Reserves.ToListAsync();
 
-            try {
+        //     try {
 
-                var project = dbProjects.FirstOrDefault(u => (u.ProjectId == updated.projectId));
-                var selectedReserved = dbReserved.FirstOrDefault(u => (u.projectId == updated.projectId));
+        //         var project = dbProjects.FirstOrDefault(u => (u.ProjectId == updated.projectId));
+        //         var selectedReserved = dbReserved.FirstOrDefault(u => (u.projectId == updated.projectId));
 
-                if(selectedReserved is null)
-                {
-                    project.Status = "InProgress";
-                }
-                else
-                {
-                    throw new Exception($"Not all parts available for project with id: '{updated.projectId}'.");
-                }
+        //         if(selectedReserved is null)
+        //         {
+        //             project.Status = "InProgress";
+        //         }
                 
-            } catch(Exception ex) {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-            }
+        //     } catch(Exception ex) {
+        //         serviceResponse.Success = false;
+        //         serviceResponse.Message = ex.Message;
+        //     }
 
-            await _context.SaveChangesAsync();
-            return serviceResponse;
-        }
+        //     await _context.SaveChangesAsync();
+        //     return serviceResponse;
+        // }
 
        public async Task<ServiceResponse<GetProject_propertiesDto>> PriceCalculation(int projektid) 
         {
@@ -131,12 +127,13 @@ namespace RendszerRepo.Services.ProjectService
 
                 if(selectedReserved is null)
                 {
-                    selectedPP.combinedPrice = selectedPP.workPrice * selectedPP.workTime + selectedPart.price * selectedPP.quantity;
-                    selectedProject.Status = "Scheduled";
+                    selectedPP.combinedPrice = (selectedPP.workPrice * selectedPP.workTime) + (selectedPart.price * selectedPP.quantity);
+                    selectedProject.Status = "InProgress";
                 }
                 else
                 {
-                    throw new Exception($"Not all parts available for project with id: '{projektid}'.");
+                    selectedPP.combinedPrice = (selectedPP.workPrice * selectedPP.workTime) + (selectedPart.price * selectedPP.quantity);
+                    selectedProject.Status = "Scheduled";
                 }
                 
                 serviceResponse.Data = _mapper.Map<GetProject_propertiesDto>(selectedPP);
