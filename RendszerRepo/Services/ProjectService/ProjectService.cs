@@ -44,6 +44,14 @@ namespace RendszerRepo.Services.ProjectService
             return serviceResponse;
         }
 
+        public async Task<ServiceResponse<List<GetProject_propertiesDto>>> getProjectProperties()
+        {
+            var serviceResponse = new ServiceResponse<List<GetProject_propertiesDto>>();
+            var dbProjectProperties = await _context.ProjectProperties.ToListAsync();
+            serviceResponse.Data = dbProjectProperties.Select(s => _mapper.Map<GetProject_propertiesDto>(s)).ToList();
+            return serviceResponse;
+        }
+
         //projectid, partid, quantity, combinedPrice
         private static List<Part> projects = new List<Part> {};
      
