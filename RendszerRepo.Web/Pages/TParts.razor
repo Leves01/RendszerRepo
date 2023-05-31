@@ -1,5 +1,6 @@
 ﻿@page "/tparts"
 @inherits PartsBase
+@inject NavigationManager _navMgr;
 
 @if (Parts == null)
 {
@@ -28,7 +29,7 @@ else
                     <td>@part.price</td>
                     <td>@part.maxCount</td>
                     <td>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" onclick="@(() => ToAddPart(part))">
                             <i class="oi oi-pencil"></i>
                         </button>
                     </td>
@@ -40,5 +41,8 @@ else
 }
 
 @code {
-
+    private void ToAddPart(GetPartDto part)
+    {
+        _navMgr.NavigateTo($"/addparttp/{part.partId}");
+    }
 }

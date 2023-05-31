@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using RendszerRepo.Dtos.Part;
+using RendszerRepo.Dtos.Storage;
 using RendszerRepo.Models;
+using RendszerRepo.Models.Dtos.Reserves;
 using RendszerRepo.Web.Services.Contracts;
 using System.Net;
 using System.Net.Http;
@@ -24,7 +26,12 @@ namespace RendszerRepo.Web.Services
             return await response.Content.ReadFromJsonAsync<ServiceResponse<List<GetPartDto>>>();
 		}
 
-		public async Task<ServiceResponse<List<GetPartDto>>> DeletePart(int id)
+        public Task<ServiceResponse<List<GetReserveDto>>> addReserves(AddReserveDto newReserve)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<ServiceResponse<List<GetPartDto>>> DeletePart(int id)
 		{
             var response = new ServiceResponse<List<GetPartDto>>();
             try
@@ -40,14 +47,59 @@ namespace RendszerRepo.Web.Services
             return response;
         }
 
-		public async Task<ServiceResponse<List<GetPartDto>>> GetAllParts()
+        public async Task<ServiceResponse<GetStoragesDto>> fillReserves(FillReservesDto fillReservesDto)
+        {
+            var response = new ServiceResponse<GetStoragesDto>();
+
+            try
+            {
+                var httpResponse = await this.httpClient.PostAsJsonAsync("/api/Part/fillReserves", fillReservesDto);
+
+                if (httpResponse.IsSuccessStatusCode)
+                {
+                    var content = await httpResponse.Content.ReadAsStringAsync();
+                    response = JsonConvert.DeserializeObject<ServiceResponse<GetStoragesDto>>(content);
+                }
+                else if (httpResponse.StatusCode == HttpStatusCode.NotFound)
+                {
+                    response.Success = false;
+                    response.Message = $"Reserve with Id '{fillReservesDto.ReservedId}' not found.";
+                }
+                else
+                {
+                    response.Success = false;
+                    response.Message = $"An error occurred while filling reserves: {httpResponse.ReasonPhrase}";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+        public async Task<ServiceResponse<List<GetPartDto>>> GetAllParts()
 		{
 
 				var parts = await this.httpClient.GetFromJsonAsync<ServiceResponse<List<GetPartDto>>>("api/Part/GetAllParts");
 				return parts;
 		}
 
-		public async Task<ServiceResponse<GetPartDto>> UpdatePart(UpdatePartDto updatedPart)
+        public async Task<ServiceResponse<List<GetReserveDto>>> getReserves()
+        {
+            var reserves = await this.httpClient.GetFromJsonAsync<ServiceResponse<List<GetReserveDto>>>("api/Part/GetReserve");
+            return reserves;
+        }
+
+        public async Task<ServiceResponse<GetPartDto>> PartToProject(PartToProjectDto newdto)
+        {
+            var response = await this.httpClient.PostAsJsonAsync("/api/Part/PartToProject", newdto);
+            return await response.Content.ReadFromJsonAsync<ServiceResponse<GetPartDto>>();
+        }
+
+        public async Task<ServiceResponse<GetPartDto>> UpdatePart(UpdatePartDto updatedPart)
 		{
             var response = await this.httpClient.PutAsJsonAsync("api/Part/UpdatePart", updatedPart);
 
@@ -71,5 +123,10 @@ namespace RendszerRepo.Web.Services
 		{
 			throw new NotImplementedException();
 		}
-	}
+
+        public Task<ServiceResponse<GetReserveDto>> updateReserve(UpdateReserveDto updateReserve)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

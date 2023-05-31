@@ -240,8 +240,9 @@ namespace RendszerRepo.Services.PartService
             return serviceResponse;
         }
 
-        //ha ez megvan hívva, akkor a storageből kiszedi megint a dolgokat és eltünteni a reservet ha elegendő
-        public async Task<ServiceResponse<GetStoragesDto>> fillReserves(int reservedId, int partId, int projectId) //ez itt amúgy megkapja a frontendből ha minden igaz
+        //ha ez megvan hívva, akkor a storageből kiszedi megint a dolgokat és eltünteni a reservet ha elegendő,
+        //int reservedId, int partId, int projectId
+        public async Task<ServiceResponse<GetStoragesDto>> fillReserves(FillReservesDto fillReservesDto) //ez itt amúgy megkapja a frontendből ha minden igaz
         {
             var serviceResponse = new ServiceResponse<GetStoragesDto>();
             var dbReserve = await _context.Reserves.ToListAsync();
@@ -249,12 +250,12 @@ namespace RendszerRepo.Services.PartService
             var dbProjects = await _context.Project.ToListAsync();
 
             try{
-                var reserve = dbReserve.First(p => p.reservedPartsId == reservedId);
-                var storage = dbStorage.First(p => p.partId == partId);
-                var projects = dbProjects.First(p => p.ProjectId == projectId);
+                var reserve = dbReserve.First(p => p.reservedPartsId == fillReservesDto.ReservedId);
+                var storage = dbStorage.First(p => p.partId == fillReservesDto.PartId);
+                var projects = dbProjects.First(p => p.ProjectId == fillReservesDto.ProjectId);
 
                 if(reserve is null) {
-                    throw new Exception($"Reserve with Id '{reservedId}' not found.");
+                    throw new Exception($"Reserve with Id '{fillReservesDto.ReservedId}' not found.");
                 }
 
                 if(reserve.neededAmount <= storage.countOfParts) {
@@ -266,7 +267,7 @@ namespace RendszerRepo.Services.PartService
 
                     var updated = new UpdateReserveDto() 
                     {
-                        reservedPartsId = reservedId,
+                        reservedPartsId = fillReservesDto.ReservedId,
                         neededAmount = Math.Abs(storage.countOfParts-reserve.neededAmount)
                     };
 

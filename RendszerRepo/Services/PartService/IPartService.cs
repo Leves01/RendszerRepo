@@ -17,6 +17,6 @@ namespace RendszerRepo.Services.PartService
         Task<ServiceResponse<List<GetReserveDto>>> getReserves();
         Task<ServiceResponse<List<GetReserveDto>>> addReserves(AddReserveDto newReserve);       
         Task<ServiceResponse<GetReserveDto>> updateReserve(UpdateReserveDto updateReserve);
-        Task<ServiceResponse<GetStoragesDto>> fillReserves(int reservedId, int partId, int projectId);
+        Task<ServiceResponse<GetStoragesDto>> fillReserves(FillReservesDto fillReservesDto);
     }
 }

@@ -149,7 +149,7 @@ namespace RendszerRepo.Services.ProjectService
             var dbProjects = await _context.Project.ToListAsync();
 
             try{
-                var selectedProjectProperties = dbProjects .FirstOrDefault(u => (u.ProjectId == newStatus.projectId));
+                var selectedProjectProperties = dbProjects.FirstOrDefault(u => (u.ProjectId == newStatus.projectId));
                 if(selectedProjectProperties  is null)
                 {
                     throw new Exception($"Project with Id '{newStatus.projectId}' not found.");

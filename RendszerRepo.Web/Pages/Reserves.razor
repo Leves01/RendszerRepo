@@ -1,0 +1,67 @@
+﻿@page "/reserves"
+@using RendszerRepo.Models.Dtos.Reserves;
+@inherits ReservesBase
+@inject NavigationManager _navMgr;
+@inject FEIPartService partService;
+
+@if (Reserves == null)
+{
+    <h3>Loading reserves...</h3>
+}
+else
+{
+    <h3>Reserves</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Reserved Part's Id</th>
+                <th>Part Id</th>
+                <th>Project Id</th>
+                <th>Needed Amount</th>
+                <th>Fill Reserve</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reserve in Reserves?.Data)
+            {
+                FillReservesDto fill = new FillReservesDto();
+                fill.ReservedId = reserve.reservedPartsId;
+                fill.PartId = reserve.partId;
+                fill.ProjectId = reserve.projectId;
+                <tr>
+                    <td>@reserve.reservedPartsId</td>
+                    <td>@reserve.partId</td>
+                    <td>@reserve.projectId</td>
+                    <td>@reserve.neededAmount</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="@(() => FillReserve(fill))">
+                            <i class="oi oi-pencil"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    FillReservesDto reserveModel = new FillReservesDto();
+    private async Task FillReserve(FillReservesDto fillReservesDto)
+    {
+        var response = await partService.fillReserves(fillReservesDto);
+
+        if (response.Success)
+        {
+            Reserves = await FEPartService.getReserves();
+            // Do something with the successful response
+            Console.WriteLine("Reserve filled successfully.");
+            StateHasChanged();
+        }
+        else
+        {
+            // Handle the error case
+            Console.WriteLine($"Failed to fill reserve: {response.Message}");
+        }
+    }
+}
