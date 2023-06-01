@@ -34,8 +34,11 @@
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-GH0zLXwtZcak53A9656ZndP15W57wd1W0kLvKDIV+VE=",
       "Newtonsoft.Json.dll": "sha256-IsZJ91\/OW+fHzNqIgEc7Y072ns8z9dGritiSyvR9Wgc=",
       "System.IO.Pipelines.dll": "sha256-P\/MqD0fCBd5bgTM16JC1QC\/Zz7s+CwViyzmDFkBG4\/c=",
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+=======
+>>>>>>> master
       "Microsoft.CSharp.dll": "sha256-aAP8Z\/Kd1yg8nt7wXedk+i2Oy2hi1b2lG2er86epgZY=",
       "Microsoft.VisualBasic.Core.dll": "sha256-xXmnvheCZXUbf1gDmsByeCpU1oV4BSXUReiP5rFfkhE=",
       "Microsoft.VisualBasic.dll": "sha256-xCirZ3P8Dp\/q+L+3T447Ab3lVGw+mgiBuvxTwi4GetQ=",
@@ -204,6 +207,7 @@
       "mscorlib.dll": "sha256-3H8zsATEgIcRSRoZhWYtgfKT5VniJvhcYxLruf8koAY=",
       "netstandard.dll": "sha256-bbx+pnJNmXZyPqAgESJnWLJsbfuAl0UflLCdl9slPYE=",
       "System.Private.CoreLib.dll": "sha256-pUYF+nr8SzfBMCLc3FM2i\/YivXJlzztdLin+aUsoqP0=",
+<<<<<<< HEAD
       "RendszerRepo.Models.dll": "sha256-nUUu49Ajs3ZRwgST4mSmY1128x7utfP5dfJ8DpOrXZU=",
       "RendszerRepo.Web.dll": "sha256-m8nBYctFuophwCV1YcWkkvJyP2\/b9f5lR+0JY+jn1As="
 =======
@@ -383,11 +387,16 @@
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+      "RendszerRepo.Models.dll": "sha256-Q7+YMgQ3+dXqQKIqYR7lFcga6FHMFBAL6OIxAb5KtkQ=",
+      "RendszerRepo.Web.dll": "sha256-dQEZFwqVewDPXp3L3Tu7loKSBB+PAzmfnVV5mJo\/byk="
+>>>>>>> master
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
       "RendszerRepo.Models.pdb": "sha256-2TfbdPPsO89Jbr9ddcLyiWwqhev8uB4oiKkcmKgEe+s=",
@@ -400,11 +409,15 @@
       "RendszerRepo.Models.pdb": "sha256-X0BxZe4TCScxmZUizjC7WgzHlNyvlH0LSFVQGoB7cLE=",
       "RendszerRepo.Web.pdb": "sha256-cQRcatK8SNMQeZf7yt4z8j7WyKYJLgwxFRsTxoZo1fU="
 >>>>>>> Stashed changes
+=======
+      "RendszerRepo.Models.pdb": "sha256-eJpvlAjbaRAouTr+2XPXxWf2YX9KjLZRW6\/O8H+fYQg=",
+      "RendszerRepo.Web.pdb": "sha256-t0DtTWC0wC\/2UsNLaFXqOUVfM6YoNDXbcrtPhiL4bYU="
+>>>>>>> master
     },
     "runtime": {
-      "dotnet.7.0.5.rx3nxj0w2h.js": "sha256-codB25EodaFEP43MDCfMBuKXU4LqurUKnQrpoMIFnPs=",
-      "dotnet.timezones.blat": "sha256-rIVQOJ+gHn4DeRSq6Ac3CURS8YBJG3P4CtYPfIuZ\/kk=",
-      "dotnet.wasm": "sha256-6u4NhRISPvoDQ8pKvno9KKJh2aKqzTavj4dpcdFCV\/o=",
+      "dotnet.7.0.4.c1be666iu0.js": "sha256-3l+4ZYRWpGMbBjNqeIqO9T\/65euaOzIvRlVX2SySvFQ=",
+      "dotnet.timezones.blat": "sha256-UEt3EzX1Ts6UAzZ8vHZJ3Nb0gAVPqeNmtxuFnUvzxVI=",
+      "dotnet.wasm": "sha256-zid5tE3Ge1c9yj2qDXbbzJKSSfLh1U4A6wpu3rTqgn8=",
       "icudt.dat": "sha256-tO5O5YzMTVSaKBboxAqezOQL9ewmupzV2JrB5Rkc8a4=",
       "icudt_CJK.dat": "sha256-SZLtQnRc0JkwqHab0VUVP7T3uBPSeYzxzDnpxPpUnHk=",
       "icudt_EFIGS.dat": "sha256-8fItetYY8kQ0ww6oxwTLiT3oXlBwHKumbeP2pRF4yTc=",
@@ -413,7 +426,7 @@
     "runtimeAssets": {
       "dotnet.wasm": {
         "behavior": "dotnetwasm",
-        "hash": "sha256-6u4NhRISPvoDQ8pKvno9KKJh2aKqzTavj4dpcdFCV\/o="
+        "hash": "sha256-zid5tE3Ge1c9yj2qDXbbzJKSSfLh1U4A6wpu3rTqgn8="
       }
     },
     "satelliteResources": null
