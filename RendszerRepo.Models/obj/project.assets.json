@@ -8,24 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\tarka\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Boros Donát\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tarka\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
+      "projectUniqueName": "C:\\Rendszerfejl\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
       "projectName": "RendszerRepo.Models",
-      "projectPath": "C:\\Users\\tarka\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
-      "packagesPath": "C:\\Users\\tarka\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tarka\\RendszerRepo\\RendszerRepo.Models\\obj\\",
+      "projectPath": "C:\\Rendszerfejl\\RendszerRepo\\RendszerRepo.Models\\RendszerRepo.Models.csproj",
+      "packagesPath": "C:\\Users\\Boros Donát\\.nuget\\packages\\",
+      "outputPath": "C:\\Rendszerfejl\\RendszerRepo\\RendszerRepo.Models\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\tarka\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Boros Donát\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -33,7 +28,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -67,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
